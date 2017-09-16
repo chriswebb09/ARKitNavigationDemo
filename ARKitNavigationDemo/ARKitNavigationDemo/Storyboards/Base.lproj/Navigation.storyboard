@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tXr-a1-R10">
+            <objects>
+                <viewController storyboardIdentifier="ViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BV1-FR-VrT" customClass="ViewController" customModule="ARKitNavigationDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ma0-Fz-KrA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="qP7-DK-vfk">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="333"/>
+                                <subviews>
+                                    <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="azz-PJ-fCR">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="333"/>
+                                    </arscnView>
+                                </subviews>
+                            </stackView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="o3r-2s-jwy">
+                                <rect key="frame" x="0.0" y="333" width="375" height="334"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="334" id="ZeW-us-FdJ"/>
+                                </constraints>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="qP7-DK-vfk" firstAttribute="trailing" secondItem="o3r-2s-jwy" secondAttribute="trailing" id="27K-Ay-nly"/>
+                            <constraint firstItem="qP7-DK-vfk" firstAttribute="top" secondItem="Ma0-Fz-KrA" secondAttribute="top" id="43r-me-fDw"/>
+                            <constraint firstItem="qP7-DK-vfk" firstAttribute="leading" secondItem="o3r-2s-jwy" secondAttribute="leading" id="8sH-tE-ueY"/>
+                            <constraint firstItem="qP7-DK-vfk" firstAttribute="leading" secondItem="Ma0-Fz-KrA" secondAttribute="leading" id="KFt-uH-ItJ"/>
+                            <constraint firstItem="o3r-2s-jwy" firstAttribute="top" secondItem="qP7-DK-vfk" secondAttribute="bottom" id="jPi-qv-VAK"/>
+                            <constraint firstItem="o3r-2s-jwy" firstAttribute="bottom" secondItem="qRm-Jb-I29" secondAttribute="bottom" id="xk5-CK-T9H"/>
+                            <constraint firstAttribute="trailing" secondItem="qP7-DK-vfk" secondAttribute="trailing" id="yoe-S7-qhB"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="qRm-Jb-I29"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="o3r-2s-jwy" id="ukD-jf-hHX"/>
+                        <outlet property="sceneView" destination="azz-PJ-fCR" id="mLS-96-H8O"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
+        </scene>
+    </scenes>
+</document>
