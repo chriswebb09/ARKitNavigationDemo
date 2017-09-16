@@ -151,8 +151,7 @@ class ViewController: UIViewController, MessagePresenting, Controller {
         SCNTransaction.begin()
         SCNTransaction.animationDuration = 0.5
         startingLocation = CLLocation.bestLocationEstimate(locations: updatedLocations)
-        
-        for (index, baseNode) in nodes.enumerated() {
+        for baseNode in nodes {
             let translation = MatrixHelper.transformMatrix(for: matrix_identity_float4x4, originLocation: startingLocation, location: baseNode.location)
             let position = positionFromTransform(translation)
             let distance = baseNode.location.distance(from: startingLocation)
