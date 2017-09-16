@@ -13,7 +13,6 @@ protocol MessagePresenting {
 }
 
 extension MessagePresenting where Self: UIViewController {
-    
     func presentMessage(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let dismissAction = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -21,4 +20,3 @@ extension MessagePresenting where Self: UIViewController {
         present(alertController, animated: true)
     }
 }
-

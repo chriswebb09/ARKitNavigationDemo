@@ -15,5 +15,3 @@ extension MKRouteStep {
         return CLLocation(latitude: polyline.coordinate.latitude, longitude: polyline.coordinate.longitude)
     }
 }
-
-

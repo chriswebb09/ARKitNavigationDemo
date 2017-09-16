@@ -24,4 +24,3 @@ extension PointOfInterest {
         return lhs.name == rhs.name && lhs.coordinate == rhs.coordinate
     }
 }
-

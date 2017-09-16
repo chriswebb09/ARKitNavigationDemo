@@ -13,8 +13,7 @@ import CoreLocation
 import MapKit
 
 class ViewController: UIViewController, MessagePresenting, Controller {
-    
-    var type: ControllerType = .Nav
+    var type: ControllerType = .nav
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet var sceneView: ARSCNView!
@@ -24,22 +23,17 @@ class ViewController: UIViewController, MessagePresenting, Controller {
     var anchors: [ARAnchor] = []
     var nodes: [BaseNode] = []
     var steps: [MKRouteStep] = []
-    
     var locationService: LocationService! = LocationService()
     var navigationService = NavigationService()
     var annons: [POIAnnotation] = []
-    
     var startingLocation: CLLocation!
     var heading: CLLocationDirection!
-    
     var destinationLocation: CLLocationCoordinate2D!
-    
     var locations: [CLLocation] = []
     var currentLegs: [[CLLocationCoordinate2D]] = []
     var currentLeg: [CLLocationCoordinate2D] = []
     var updatedLocations: [CLLocation] = []
     let configuration = ARWorldTrackingConfiguration()
-    
     var done: Bool = false
     
     override func viewDidLoad() {
@@ -48,14 +42,11 @@ class ViewController: UIViewController, MessagePresenting, Controller {
         sceneView.showsStatistics = true
         let scene = SCNScene()
         sceneView.scene = scene
-        
         destinationLocation = CLLocationCoordinate2D(latitude: 40.736248, longitude: -73.979397)
-        
         run()
         locationService.startUpdatingLocation()
         mapView.delegate = self
         locationService = LocationService()
-        
         locationService.delegate = self
         locationService.startUpdatingLocation()
         if destinationLocation != nil {
@@ -66,7 +57,6 @@ class ViewController: UIViewController, MessagePresenting, Controller {
                 self.steps.append(contentsOf: steps)
             }
         }
-        
         if self.annons.count <= 0 {
             getLocationData()
         }
@@ -256,7 +246,7 @@ extension ViewController: LocationServiceDelegate {
     }
     
     func locationManagerDidUpdateLocation(_ locationManager: LocationService, location: CLLocation) {
-        if location.horizontalAccuracy <= 70.0 {
+        if location.horizontalAccuracy <= 65.0 {
             updateLocations(currentLocation: location)
             DispatchQueue.main.async {
                 self.updateNodePosition()
@@ -319,7 +309,7 @@ extension ViewController:  Mapable {
         anchors.removeAll()
     }
     
-    // Get a nodes in sceneView for a matrix transformation
+    // Get the position of a node in sceneView for matrix transformation
     
     func positionFromTransform(_ transform: matrix_float4x4) -> SCNVector3 {
         return SCNVector3Make(transform.columns.3.x, transform.columns.3.y, transform.columns.3.z)
@@ -335,4 +325,3 @@ extension ViewController:  Mapable {
         }
     }
 }
-

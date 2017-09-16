@@ -11,18 +11,14 @@ import UIKit
 class NavigationControllerCoordinator: ControllerCoordinator {
     
     var window: UIWindow
-    
     var rootController: RootController!
-    
     weak var delegate: ControllerCoordinatorDelegate?
-    
     private var navigationController: UINavigationController {
         return UINavigationController(rootViewController: rootController)
     }
-    
     var type: ControllerType {
         didSet {
-            if let storyboard = try? UIStoryboard(.Navigation) {
+            if let storyboard = try? UIStoryboard(.navigation) {
                 if let viewController: ViewController = try? storyboard.instantiateViewController() {
                     rootController = viewController
                     viewController.setup()
@@ -33,7 +29,7 @@ class NavigationControllerCoordinator: ControllerCoordinator {
     
     init(window: UIWindow) {
         self.window = window
-        type = .Start
+        type = .start
     }
     
     func start() {
@@ -41,4 +37,3 @@ class NavigationControllerCoordinator: ControllerCoordinator {
         window.makeKeyAndVisible()
     }
 }
-

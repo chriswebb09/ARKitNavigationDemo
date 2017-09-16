@@ -15,13 +15,10 @@ protocol StartViewControllerDelegate: class {
 class StartViewController: UIViewController, Controller {
     
     weak var delegate: StartViewControllerDelegate?
-    
     var locationService: LocationService!
-    
-    var type: ControllerType = .Nav
+    var type: ControllerType = .nav
     
     @IBAction func goButtonTapped(_ sender: Any) {
         delegate?.startNavigation(tapped: true)
     }
 }
-

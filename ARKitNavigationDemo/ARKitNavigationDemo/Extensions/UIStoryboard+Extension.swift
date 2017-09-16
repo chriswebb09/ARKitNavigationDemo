@@ -15,12 +15,10 @@ extension UIStoryboard {
     // Enumeration of all storyboard names used in the app
     
     enum Storyboard: String {
-        case Start, Navigation
-        
+        case start, navigation
         // The name of the storyboard's file, returned with capitalization applied
-        
         var filename: String {
-            return rawValue
+            return rawValue.capitalized
         }
     }
     
@@ -28,31 +26,23 @@ extension UIStoryboard {
         self.init(name: storyboard.filename, bundle: bundle)
     }
     
-    
     func instantiateViewController<T: UIViewController>() throws -> T {
-        
         guard let viewController = self.instantiateViewController(withIdentifier: T.storyboardIdentifier) as? T else {
-            
             let error = StoryboardIdentifiableError.unrecognizedIdentifier
             print("\(error.localizedDescription): \(T.storyboardIdentifier)")
             throw error
         }
         return viewController
     }
-    
 }
 
 // MARK: - Storyboard Identifiable Error
 
 enum StoryboardIdentifiableError: Error {
-    
-    case unrecognizedIdentifier
-    case unrecognizedType
-    
+    case unrecognizedIdentifier, unrecognizedType
 }
 
 // MARK: - View Controller
 
 extension UIViewController: StoryboardIdentifiable { }
-
 

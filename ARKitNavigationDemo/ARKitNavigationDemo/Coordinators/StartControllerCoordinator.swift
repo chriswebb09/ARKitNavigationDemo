@@ -22,7 +22,7 @@ class StartControllerCoordinator: ControllerCoordinator {
     
     var type: ControllerType {
         didSet {
-            if let storyboard = try? UIStoryboard(.Start) {
+            if let storyboard = try? UIStoryboard(.start) {
                 if let viewController: StartViewController = try? storyboard.instantiateViewController() {
                     rootController = viewController
                     viewController.delegate = self
@@ -33,7 +33,7 @@ class StartControllerCoordinator: ControllerCoordinator {
     
     init(window: UIWindow) {
         self.window = window
-        type = .Start
+        type = .start
     }
     
     func start() {
@@ -47,4 +47,3 @@ extension StartControllerCoordinator: StartViewControllerDelegate {
         delegate?.transitionCoordinator(type: .app)
     }
 }
-

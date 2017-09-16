@@ -28,21 +28,4 @@ extension Mapable {
             }
         }
     }
-    
-    //    func showPointsOfInterestInMap(currentLegs: [[CLLocationCoordinate2D]]) {
-    //        mapView.removeAnnotations(mapView.annotations)
-    //        for leg in currentLegs {
-    //            for item in leg {
-    //                let poi = POIAnnotation(point: PointOfInterest(name: String(describing: item), coordinate: item))
-    //                mapView.addAnnotation(poi)
-    //            }
-    //        }
-    //    }
-    //
-    //    func addAnnotations() {
-    //        mapView?.addAnnotations(annons)
-    //        let overlays = annons.map { MKCircle(center: $0.coordinate, radius: 0.2) }
-    //        mapView?.addOverlays(overlays)
-    //    }
 }
-

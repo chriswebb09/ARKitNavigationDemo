@@ -11,11 +11,8 @@ import UIKit
 import MapKit
 
 class MainCoordinator: AppCoordinator {
-    
     weak var delegate: ControllerCoordinatorDelegate?
-
     var childCoordinators: [ControllerCoordinator] = []
-    
     var window: UIWindow
     
     init(window: UIWindow) {
@@ -36,25 +33,21 @@ class MainCoordinator: AppCoordinator {
 extension MainCoordinator: ControllerCoordinatorDelegate {
     
     // Switch between application flows
-    
     func transitionCoordinator(type: CoordinatorType) {
         
         // Remove previous application flow
-        
         childCoordinators.removeAll()
-        
         switch type {
         case .app:
             let navCoordinator = NavigationControllerCoordinator(window: window)
             addChildCoordinator(navCoordinator)
-            navCoordinator.type = .Nav
+            navCoordinator.type = .nav
             navCoordinator.start()
         case .start:
             let startCoordinator = StartControllerCoordinator(window: window)
             addChildCoordinator(startCoordinator)
-            startCoordinator.type = .Start
+            startCoordinator.type = .start
             startCoordinator.start()
         }
     }
 }
-

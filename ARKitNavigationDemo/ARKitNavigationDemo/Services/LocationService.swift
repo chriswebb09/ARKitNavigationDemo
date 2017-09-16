@@ -17,7 +17,6 @@ protocol LocationServiceDelegate {
 }
 
 class LocationService: NSObject, CLLocationManagerDelegate {
-    
     var locationManager: CLLocationManager?
     var lastLocation: CLLocation?
     var delegate: LocationServiceDelegate?
@@ -29,16 +28,12 @@ class LocationService: NSObject, CLLocationManagerDelegate {
         super.init()
         
         locationManager = CLLocationManager()
-        
         guard let locationManager = locationManager else { return }
-        
         switch(CLLocationManager.authorizationStatus()) {
-            
         case .authorizedAlways, .authorizedWhenInUse:
             locationManager.startUpdatingLocation()
             locationManager.startUpdatingHeading()
             lastLocation = locationManager.location
-            
         case .notDetermined, .restricted, .denied:
              startUpdatingLocation()
         }

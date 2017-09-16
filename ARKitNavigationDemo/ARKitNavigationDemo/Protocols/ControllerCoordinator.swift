@@ -9,7 +9,7 @@
 import UIKit
 
 enum  ControllerType {
-    case Nav, Start, None
+    case nav, start, none
 }
 
 protocol Controller: class {
@@ -27,4 +27,3 @@ protocol ControllerCoordinator: Coordinator {
     var rootController: RootController! { get }
     weak var delegate: ControllerCoordinatorDelegate? { get set }
 }
-

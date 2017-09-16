@@ -22,4 +22,3 @@ extension StoryboardIdentifiable where Self: UIViewController {
         return String(describing: self)
     }
 }
-

@@ -51,4 +51,3 @@ class MatrixHelper {
         return simd_mul(matrix, transformMatrix)
     }
 }
-

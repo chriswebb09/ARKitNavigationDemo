@@ -10,9 +10,7 @@ import Foundation
 import MapKit
 
 class POIAnnotation: NSObject, MKAnnotation {
-    
     let pointOfInterest: PointOfInterest
-    
     var coordinate: CLLocationCoordinate2D {
         return pointOfInterest.coordinate
     }
@@ -30,4 +28,3 @@ class POIAnnotation: NSObject, MKAnnotation {
         super.init()
     }
 }
-
