@@ -26,7 +26,7 @@ func -(left: CLLocationCoordinate2D, right: CLLocationCoordinate2D) -> CLLocatio
 }
 
 extension CLLocation {
-
+    
     func bearingToLocationRadian(_ destinationLocation: CLLocation) -> Double {
         
         let lat1 = self.coordinate.latitude.toRadians()
@@ -73,7 +73,7 @@ extension CLLocation {
             longitudeTranslation: longitudeTranslation,
             altitudeTranslation: altitudeTranslation)
     }
-
+    
     static func bestLocationEstimate(locations: [CLLocation]) -> CLLocation {
         let sortedLocationEstimates = locations.sorted(by: {
             if $0.horizontalAccuracy == $1.horizontalAccuracy {

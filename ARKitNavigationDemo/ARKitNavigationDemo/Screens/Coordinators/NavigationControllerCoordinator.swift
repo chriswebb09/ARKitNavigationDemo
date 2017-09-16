@@ -12,10 +12,13 @@ class NavigationControllerCoordinator: ControllerCoordinator {
     
     var window: UIWindow
     var rootController: RootController!
+    
     weak var delegate: ControllerCoordinatorDelegate?
+    
     private var navigationController: UINavigationController {
         return UINavigationController(rootViewController: rootController)
     }
+    
     var type: ControllerType {
         didSet {
             if let storyboard = try? UIStoryboard(.navigation) {

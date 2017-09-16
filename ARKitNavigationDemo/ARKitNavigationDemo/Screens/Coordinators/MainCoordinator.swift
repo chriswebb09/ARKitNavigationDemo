@@ -11,7 +11,9 @@ import UIKit
 import MapKit
 
 class MainCoordinator: AppCoordinator {
+    
     weak var delegate: ControllerCoordinatorDelegate?
+    
     var childCoordinators: [ControllerCoordinator] = []
     var window: UIWindow
     
