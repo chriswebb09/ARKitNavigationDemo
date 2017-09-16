@@ -64,22 +64,18 @@ class ViewController: UIViewController, MessagePresenting, Controller {
     }
     
     func getLocationData() {
-        setLegs()
-        done = true
-    }
-    
-    func setLeg(from previous: CLLocation, to next: CLLocation) -> [CLLocationCoordinate2D] {
-        let intermediaries = CLLocationCoordinate2D.getIntermediaryLocations(currentLocation: previous, destinationLocation: next)
-        return intermediaries
-    }
-    
-    func setLegs() {
         for (index, step) in steps.enumerated() {
             setTripLegFromStep(step, and: index)
         }
         for leg in currentLegs {
             setIntermediary(intermediaries: leg)
         }
+        done = true
+    }
+    
+    func setLeg(from previous: CLLocation, to next: CLLocation) -> [CLLocationCoordinate2D] {
+        let intermediaries = CLLocationCoordinate2D.getIntermediaryLocations(currentLocation: previous, destinationLocation: next)
+        return intermediaries
     }
     
     func setIntermediary(intermediaries: [CLLocationCoordinate2D]) {
