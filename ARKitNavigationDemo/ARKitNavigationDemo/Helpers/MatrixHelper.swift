@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import GLKit
 import CoreLocation
 
 class MatrixHelper {
@@ -43,10 +42,10 @@ class MatrixHelper {
     
     static func transformMatrix(for matrix: simd_float4x4, originLocation: CLLocation, location: CLLocation) -> simd_float4x4 {
         let distance = Float(location.distance(from: originLocation))
-        let bearing = GLKMathDegreesToRadians(Float(originLocation.coordinate.direction(to: location.coordinate)))
+        let bearing = originLocation.bearingToLocationRadian(location)
         let position = vector_float4(0.0, 0.0, -distance, 0.0)
         let translationMatrix = MatrixHelper.translationMatrix(with: matrix_identity_float4x4, for: position)
-        let rotationMatrix = MatrixHelper.rotateAroundY(with: matrix_identity_float4x4, for: bearing)
+        let rotationMatrix = MatrixHelper.rotateAroundY(with: matrix_identity_float4x4, for: Float(bearing))
         let transformMatrix = simd_mul(rotationMatrix, translationMatrix)
         return simd_mul(matrix, transformMatrix)
     }

@@ -80,8 +80,8 @@ class ViewController: UIViewController, MessagePresenting, Controller {
     
     func setIntermediary(intermediaries: [CLLocationCoordinate2D]) {
         for intermediary in intermediaries {
-           annons.append(POIAnnotation(point: PointOfInterest(name: String(describing: intermediary), coordinate: intermediary)))
-           locations.append(CLLocation(latitude: intermediary.latitude, longitude: intermediary.longitude))
+            annons.append(POIAnnotation(point: PointOfInterest(name: String(describing: intermediary), coordinate: intermediary)))
+            locations.append(CLLocation(latitude: intermediary.latitude, longitude: intermediary.longitude))
         }
     }
     
@@ -151,8 +151,8 @@ class ViewController: UIViewController, MessagePresenting, Controller {
         SCNTransaction.begin()
         SCNTransaction.animationDuration = 0.5
         startingLocation = CLLocation.bestLocationEstimate(locations: updatedLocations)
-        for node in nodes {
-            let baseNode = node
+        
+        for (index, baseNode) in nodes.enumerated() {
             let translation = MatrixHelper.transformMatrix(for: matrix_identity_float4x4, originLocation: startingLocation, location: baseNode.location)
             let position = positionFromTransform(translation)
             let distance = baseNode.location.distance(from: startingLocation)
@@ -228,9 +228,7 @@ extension ViewController: LocationServiceDelegate {
         for location in locations {
             if location.horizontalAccuracy <= 65 {
                 updateLocations(currentLocation: location)
-                DispatchQueue.main.async {
-                    self.updateNodePosition()
-                }
+                updateNodePosition()
             }
         }
     }
@@ -238,9 +236,7 @@ extension ViewController: LocationServiceDelegate {
     func locationManagerDidUpdateLocation(_ locationManager: LocationService, location: CLLocation) {
         if location.horizontalAccuracy <= 65.0 {
             updateLocations(currentLocation: location)
-            DispatchQueue.main.async {
-                self.updateNodePosition()
-            }
+            updateNodePosition()
         }
     }
     
