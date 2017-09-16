@@ -87,21 +87,24 @@ class ViewController: UIViewController, MessagePresenting, Controller {
     
     func setTripLegFromStep(_ step: MKRouteStep, and index: Int) {
         if index > 0 {
-            shortIndex(index: index, step: step)
+            tripLeg(for: index, and: step)
         } else {
-            let nextLocation = CLLocation(latitude: step.polyline.coordinate.latitude, longitude: step.polyline.coordinate.longitude)
-            let intermediaries = CLLocationCoordinate2D.getIntermediaryLocations(currentLocation: self.startingLocation, destinationLocation: nextLocation)
-            currentLegs.append(intermediaries)
+            initialLeg(for: step)
         }
     }
     
-    func shortIndex(index: Int, step: MKRouteStep) {
-        guard index < 3 else { return }
+    func tripLeg(for index: Int, and step: MKRouteStep) {
         let previousIndex = index - 1
         let previous = steps[previousIndex]
         let previousLocation = CLLocation(latitude: previous.polyline.coordinate.latitude, longitude: previous.polyline.coordinate.longitude)
         let nextLocation = CLLocation(latitude: step.polyline.coordinate.latitude, longitude: step.polyline.coordinate.longitude)
         let intermediaries = CLLocationCoordinate2D.getIntermediaryLocations(currentLocation: previousLocation, destinationLocation: nextLocation)
+        currentLegs.append(intermediaries)
+    }
+    
+    func initialLeg(for step: MKRouteStep) {
+        let nextLocation = CLLocation(latitude: step.polyline.coordinate.latitude, longitude: step.polyline.coordinate.longitude)
+        let intermediaries = CLLocationCoordinate2D.getIntermediaryLocations(currentLocation: self.startingLocation, destinationLocation: nextLocation)
         currentLegs.append(intermediaries)
     }
     
