@@ -42,7 +42,7 @@ class ViewController: UIViewController, MessagePresenting, Controller {
         let scene = SCNScene()
         sceneView.scene = scene
         destinationLocation = CLLocationCoordinate2D(latitude: 40.736248, longitude: -73.979397)
-        run()
+        runSession()
         locationService.startUpdatingLocation()
         mapView.delegate = self
         locationService = LocationService()
@@ -68,32 +68,31 @@ class ViewController: UIViewController, MessagePresenting, Controller {
             setTripLegFromStep(step, and: index)
         }
         for leg in currentLegs {
-            setIntermediary(intermediaries: leg)
+            update(intermediary: leg)
         }
         done = true
     }
     
     func setLeg(from previous: CLLocation, to next: CLLocation) -> [CLLocationCoordinate2D] {
-        let intermediaries = CLLocationCoordinate2D.getIntermediaryLocations(currentLocation: previous, destinationLocation: next)
-        return intermediaries
+        return CLLocationCoordinate2D.getIntermediaryLocations(currentLocation: previous, destinationLocation: next)
     }
     
-    func setIntermediary(intermediaries: [CLLocationCoordinate2D]) {
-        for intermediary in intermediaries {
+    func update(intermediary locations: [CLLocationCoordinate2D]) {
+        for intermediary in locations {
             annons.append(POIAnnotation(point: PointOfInterest(name: String(describing: intermediary), coordinate: intermediary)))
-            locations.append(CLLocation(latitude: intermediary.latitude, longitude: intermediary.longitude))
+            self.locations.append(CLLocation(latitude: intermediary.latitude, longitude: intermediary.longitude))
         }
     }
     
     func setTripLegFromStep(_ step: MKRouteStep, and index: Int) {
         if index > 0 {
-            tripLeg(for: index, and: step)
+            getTripLeg(for: index, and: step)
         } else {
-            initialLeg(for: step)
+            getInitialLeg(for: step)
         }
     }
     
-    func tripLeg(for index: Int, and step: MKRouteStep) {
+    func getTripLeg(for index: Int, and step: MKRouteStep) {
         let previousIndex = index - 1
         let previous = steps[previousIndex]
         let previousLocation = CLLocation(latitude: previous.polyline.coordinate.latitude, longitude: previous.polyline.coordinate.longitude)
@@ -102,13 +101,13 @@ class ViewController: UIViewController, MessagePresenting, Controller {
         currentLegs.append(intermediaries)
     }
     
-    func initialLeg(for step: MKRouteStep) {
+    func getInitialLeg(for step: MKRouteStep) {
         let nextLocation = CLLocation(latitude: step.polyline.coordinate.latitude, longitude: step.polyline.coordinate.longitude)
         let intermediaries = CLLocationCoordinate2D.getIntermediaryLocations(currentLocation: self.startingLocation, destinationLocation: nextLocation)
         currentLegs.append(intermediaries)
     }
     
-    func run() {
+    func runSession() {
         configuration.worldAlignment = .gravityAndHeading
         sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
     }
