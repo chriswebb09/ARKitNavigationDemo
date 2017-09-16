@@ -23,11 +23,10 @@ class ViewController: UIViewController, MessagePresenting, Controller {
     var anchors: [ARAnchor] = []
     var nodes: [BaseNode] = []
     var steps: [MKRouteStep] = []
-    var locationService: LocationService! = LocationService()
+    var locationService = LocationService()
     var navigationService = NavigationService()
     var annons: [POIAnnotation] = []
     var startingLocation: CLLocation!
-    var heading: CLLocationDirection!
     var destinationLocation: CLLocationCoordinate2D!
     var locations: [CLLocation] = []
     var currentLegs: [[CLLocationCoordinate2D]] = []
@@ -57,9 +56,6 @@ class ViewController: UIViewController, MessagePresenting, Controller {
                 self.steps.append(contentsOf: steps)
             }
         }
-        if self.annons.count <= 0 {
-            getLocationData()
-        }
     }
     
     func setup() {
@@ -88,8 +84,8 @@ class ViewController: UIViewController, MessagePresenting, Controller {
     
     func setIntermediary(intermediaries: [CLLocationCoordinate2D]) {
         for intermediary in intermediaries {
-            self.annons.append(POIAnnotation(point: PointOfInterest(name: String(describing: intermediary), coordinate: intermediary)))
-            self.locations.append(CLLocation(latitude: intermediary.latitude, longitude: intermediary.longitude))
+           annons.append(POIAnnotation(point: PointOfInterest(name: String(describing: intermediary), coordinate: intermediary)))
+           locations.append(CLLocation(latitude: intermediary.latitude, longitude: intermediary.longitude))
         }
     }
     
@@ -111,7 +107,6 @@ class ViewController: UIViewController, MessagePresenting, Controller {
         let nextLocation = CLLocation(latitude: step.polyline.coordinate.latitude, longitude: step.polyline.coordinate.longitude)
         let intermediaries = CLLocationCoordinate2D.getIntermediaryLocations(currentLocation: previousLocation, destinationLocation: nextLocation)
         currentLegs.append(intermediaries)
-        print(intermediaries)
     }
     
     func run() {
@@ -136,7 +131,7 @@ class ViewController: UIViewController, MessagePresenting, Controller {
         mapView.removeAnnotations(mapView.annotations)
         for leg in currentLegs {
             for item in leg {
-                let poi = POIAnnotation(point: PointOfInterest(name: "N " + String(describing: item), coordinate: item))
+                let poi = POIAnnotation(point: PointOfInterest(name: String(describing: item), coordinate: item))
                 mapView.addAnnotation(poi)
             }
         }
@@ -234,7 +229,6 @@ extension ViewController: ARSCNViewDelegate {
 extension ViewController: LocationServiceDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
         for location in locations {
             if location.horizontalAccuracy <= 65 {
                 updateLocations(currentLocation: location)
