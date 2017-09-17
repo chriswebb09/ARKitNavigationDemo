@@ -3,7 +3,7 @@ ARKit Demo Application
 
 * Work in progress.
 
-[Example gif](https://i.imgur.com/Earbhhi.gif)
+![Example gif](https://i.imgur.com/poUvFz0.gif)
 
 ## Demo project for:
 
