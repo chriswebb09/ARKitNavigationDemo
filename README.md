@@ -3,4 +3,4 @@ ARKit Demo Application
 
 * Work in progress.
 
-![image](https://i.imgur.com/Earbhhi.gif)
+[Example gif](https://i.imgur.com/Earbhhi.gif)
