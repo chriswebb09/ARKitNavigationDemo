@@ -3,7 +3,7 @@ ARKit Demo Application
 
 * Work in progress.
 
-![Example gif](https://i.imgur.com/poUvFz0.gif)
+![Example gif](https://github.com/chriswebb09/ARKitNavigationDemo/blob/master/ARKitNavigationDemo/test4.gif)
 
 ## Demo project for:
 
