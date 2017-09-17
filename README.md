@@ -5,9 +5,7 @@ ARKit Demo Application
 
 [Example gif](https://i.imgur.com/Earbhhi.gif)
 
-Demo project for:
-
-ARKit and Core Location:
+## Demo project for:
 
 [ARKit and CoreLocation: Part One](https://medium.com/journey-of-one-thousand-apps/arkit-and-corelocation-part-one-fc7cb2fa0150)
 
