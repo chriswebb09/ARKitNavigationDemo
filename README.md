@@ -1,3 +1,4 @@
 # ARKitNavigationDemo
 ARKit Demo Application
-Work in progress.
+
+* Work in progress.
