@@ -152,10 +152,8 @@
 				A74AF0EE1F6CA9A90000CD5F /* Screens */,
 				A74AF0EA1F6CA95B0000CD5F /* Protocols */,
 				A74AF0EC1F6CA97B0000CD5F /* Models */,
-				A74AF0EB1F6CA9760000CD5F /* Helpers */,
 				A74AF0E81F6CA9290000CD5F /* Extensions */,
 				A74AF0F11F6CAA070000CD5F /* Storyboards */,
-				A74AF0FB1F6CAAC80000CD5F /* Coordinators */,
 			);
 			path = ARKitNavigationDemo;
 			sourceTree = "<group>";
@@ -225,6 +223,7 @@
 		A74AF0ED1F6CA98F0000CD5F /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				A74AF0EB1F6CA9760000CD5F /* Helpers */,
 				A74AF0C41F6CA2A50000CD5F /* LocationService.swift */,
 				A74AF0C21F6CA2650000CD5F /* NavigationService.swift */,
 			);
@@ -234,8 +233,8 @@
 		A74AF0EE1F6CA9A90000CD5F /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				A74AF0961F6CA2490000CD5F /* ViewController.swift */,
-				A74AF0C61F6CA3340000CD5F /* StartViewController.swift */,
+				A74AF0FB1F6CAAC80000CD5F /* Coordinators */,
+				A7746D381F6CF03A00B0B0B9 /* Controllers */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -267,6 +266,15 @@
 				A74AF0F91F6CAAC30000CD5F /* NavigationControllerCoordinator.swift */,
 			);
 			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		A7746D381F6CF03A00B0B0B9 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A74AF0961F6CA2490000CD5F /* ViewController.swift */,
+				A74AF0C61F6CA3340000CD5F /* StartViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

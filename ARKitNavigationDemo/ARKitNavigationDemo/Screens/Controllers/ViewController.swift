@@ -41,13 +41,14 @@ class ViewController: UIViewController, MessagePresenting, Controller {
         sceneView.showsStatistics = true
         let scene = SCNScene()
         sceneView.scene = scene
-        destinationLocation = CLLocationCoordinate2D(latitude: 40.736248, longitude: -73.979397)
+        navigationController?.setNavigationBarHidden(true, animated: false)
         runSession()
-        locationService.startUpdatingLocation()
         mapView.delegate = self
         locationService = LocationService()
         locationService.delegate = self
         locationService.startUpdatingLocation()
+        destinationLocation = CLLocationCoordinate2D(latitude: 40.736248, longitude: -73.979397)
+        
         if destinationLocation != nil {
             navigationService.getDirections(destinationLocation: destinationLocation, request: MKDirectionsRequest()) { steps in
                 for step in steps {
@@ -56,6 +57,9 @@ class ViewController: UIViewController, MessagePresenting, Controller {
                 self.steps.append(contentsOf: steps)
             }
         }
+    }
+    @IBAction func resetButtonTapped(_ sender: Any) {
+        removeAllAnnotations()
     }
     
     func setup() {
@@ -113,14 +117,16 @@ class ViewController: UIViewController, MessagePresenting, Controller {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        startingLocation = CLLocation.bestLocationEstimate(locations: updatedLocations)
-        getLocationData()
-        if (startingLocation != nil && mapView.annotations.count == 0) && done == true {
-            DispatchQueue.main.async {
-                self.showPointsOfInterestInMap(currentLegs: self.currentLegs)
-                self.centerMapInInitialCoordinates()
-                self.addAnnotations()
-                self.addAnchors(steps: self.steps)
+        if updatedLocations.count > 0 {
+            startingLocation = CLLocation.bestLocationEstimate(locations: updatedLocations)
+            getLocationData()
+            if (startingLocation != nil && mapView.annotations.count == 0) && done == true {
+                DispatchQueue.main.async {
+                    self.showPointsOfInterestInMap(currentLegs: self.currentLegs)
+                    self.centerMapInInitialCoordinates()
+                    self.addAnnotations()
+                    self.addAnchors(steps: self.steps)
+                }
             }
         }
     }
@@ -152,16 +158,18 @@ class ViewController: UIViewController, MessagePresenting, Controller {
     func updateNodePosition() {
         SCNTransaction.begin()
         SCNTransaction.animationDuration = 0.5
-        startingLocation = CLLocation.bestLocationEstimate(locations: updatedLocations)
-        for baseNode in nodes {
-            let translation = MatrixHelper.transformMatrix(for: matrix_identity_float4x4, originLocation: startingLocation, location: baseNode.location)
-            let position = positionFromTransform(translation)
-            let distance = baseNode.location.distance(from: startingLocation)
-            DispatchQueue.main.async {
-                let scale = 100 / Float(distance)
-                baseNode.scale = SCNVector3(x: scale, y: scale, z: scale)
-                baseNode.anchor = ARAnchor(transform: translation)
-                baseNode.position = position
+        if updatedLocations.count > 0 {
+            startingLocation = CLLocation.bestLocationEstimate(locations: updatedLocations)
+            for baseNode in nodes {
+                let translation = MatrixHelper.transformMatrix(for: matrix_identity_float4x4, originLocation: startingLocation, location: baseNode.location)
+                let position = positionFromTransform(translation)
+                let distance = baseNode.location.distance(from: startingLocation)
+                DispatchQueue.main.async {
+                    let scale = 100 / Float(distance)
+                    baseNode.scale = SCNVector3(x: scale, y: scale, z: scale)
+                    baseNode.anchor = ARAnchor(transform: translation)
+                    baseNode.position = position
+                }
             }
         }
         SCNTransaction.commit()
@@ -175,7 +183,7 @@ class ViewController: UIViewController, MessagePresenting, Controller {
         let stepAnchor = ARAnchor(transform: locationTransform)
         let sphere = BaseNode(title: step.instructions, location: stepLocation)
         anchors.append(stepAnchor)
-        sphere.addNode(with: 0.2, and: .green, and: step.instructions)
+        sphere.addNode(with: 0.3, and: .green, and: step.instructions)
         sphere.location = stepLocation
         sphere.anchor = stepAnchor
         sceneView.session.add(anchor: stepAnchor)
@@ -189,7 +197,7 @@ class ViewController: UIViewController, MessagePresenting, Controller {
         let locationTransform = MatrixHelper.transformMatrix(for: matrix_identity_float4x4, originLocation: startingLocation, location: location)
         let stepAnchor = ARAnchor(transform: locationTransform)
         let sphere = BaseNode(title: "Title", location: location)
-        sphere.addSphere(with: 0.11, and: .blue)
+        sphere.addSphere(with: 0.25, and: .blue)
         anchors.append(stepAnchor)
         sphere.location = location
         sceneView.session.add(anchor: stepAnchor)
@@ -225,34 +233,16 @@ extension ViewController: ARSCNViewDelegate {
 
 extension ViewController: LocationServiceDelegate {
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        for location in locations {
-            if location.horizontalAccuracy <= 65 {
-                updateLocations(currentLocation: location)
-                updateNodePosition()
-            }
-        }
-    }
-    
-    func locationManagerDidUpdateLocation(_ locationManager: LocationService, location: CLLocation) {
-        if location.horizontalAccuracy <= 65.0 {
-            updateLocations(currentLocation: location)
+    func trackingLocation(for currentLocation: CLLocation) {
+        if currentLocation.horizontalAccuracy <= 65.0 {
+            print("LOCATION ACCURATE")
+            updatedLocations.append(currentLocation)
             updateNodePosition()
         }
     }
     
-    func trackingLocation(for currentLocation: CLLocation) {
-        updateLocations(currentLocation: currentLocation)
-    }
-    
     func trackingLocationDidFail(with error: Error) {
         presentMessage(title: "Error", message: error.localizedDescription)
-    }
-    
-    func updateLocations(currentLocation: CLLocation) {
-        if currentLocation.horizontalAccuracy <= 70.0 {
-            updatedLocations.append(currentLocation)
-        }
     }
 }
 
@@ -293,7 +283,10 @@ extension ViewController:  Mapable {
         for anchor in anchors {
             sceneView.session.remove(anchor: anchor)
         }
-        anchors.removeAll()
+        DispatchQueue.main.async {
+            self.nodes.removeAll()
+            self.anchors.removeAll()
+        }
     }
     
     // Get the position of a node in sceneView for matrix transformation

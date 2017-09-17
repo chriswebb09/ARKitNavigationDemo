@@ -56,10 +56,10 @@ extension CLLocationCoordinate2D {
     
     static func getIntermediaryLocations(currentLocation: CLLocation, destinationLocation: CLLocation) -> [CLLocationCoordinate2D] {
         var distances = [CLLocationCoordinate2D]()
-        let metersIntervalPerNode: Float = 5
+        let metersIntervalPerNode: Float = 10
         var distance = Float(destinationLocation.distance(from: currentLocation))
         let bearing = currentLocation.bearingToLocationRadian(destinationLocation)
-        while distance > 5 {
+        while distance > 10 {
             distance -= metersIntervalPerNode
             let newLocation = currentLocation.coordinate.coordinate(with: Double(bearing), and: Double(distance))
             if !distances.contains(newLocation) {

@@ -9,11 +9,9 @@
 import Foundation
 import CoreLocation
 
-protocol LocationServiceDelegate {
+protocol LocationServiceDelegate: class {
     func trackingLocation(for currentLocation: CLLocation)
     func trackingLocationDidFail(with error: Error)
-    func locationManagerDidUpdateLocation(_ locationManager: LocationService, location: CLLocation)
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
 }
 
 class LocationService: NSObject, CLLocationManagerDelegate {
@@ -55,16 +53,9 @@ class LocationService: NSObject, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         for location in locations {
-            if initial == true {
-                self.locations = locations
-            }
-            self.delegate?.locationManagerDidUpdateLocation(self, location: location)
+            delegate?.trackingLocation(for: location)
         }
         currentLocation = manager.location
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
-        //delegate?.locationManagerDidUpdateHeading(self, heading: newHeading.trueHeading, accuracy: newHeading.headingAccuracy)
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
