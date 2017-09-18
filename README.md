@@ -1,6 +1,7 @@
 # ARKitNavigationDemo
 ARKit Demo Application
 
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 * Work in progress.
 
 ![Example gif](https://github.com/chriswebb09/ARKitNavigationDemo/blob/master/ARKitNavigationDemo/test4.gif)
