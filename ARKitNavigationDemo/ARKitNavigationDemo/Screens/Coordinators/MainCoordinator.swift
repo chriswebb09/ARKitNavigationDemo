@@ -35,9 +35,11 @@ class MainCoordinator: AppCoordinator {
 extension MainCoordinator: ControllerCoordinatorDelegate {
     
     // Switch between application flows
+    
     func transitionCoordinator(type: CoordinatorType) {
         
         // Remove previous application flow
+        
         childCoordinators.removeAll()
         switch type {
         case .app:

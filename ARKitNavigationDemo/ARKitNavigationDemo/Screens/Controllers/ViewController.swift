@@ -13,51 +13,51 @@ import CoreLocation
 import MapKit
 
 class ViewController: UIViewController, MessagePresenting, Controller {
+    
     var type: ControllerType = .nav
     
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet var sceneView: ARSCNView!
+    @IBOutlet private var sceneView: ARSCNView!
     
-    var annotationColor = UIColor.blue
-    
-    var anchors: [ARAnchor] = []
-    var nodes: [BaseNode] = []
-    var steps: [MKRouteStep] = []
-    var locationService = LocationService()
-    var navigationService = NavigationService()
-    var annons: [POIAnnotation] = []
-    var startingLocation: CLLocation!
-    var destinationLocation: CLLocationCoordinate2D!
-    var locations: [CLLocation] = []
-    var currentLegs: [[CLLocationCoordinate2D]] = []
-    var currentLeg: [CLLocationCoordinate2D] = []
-    var updatedLocations: [CLLocation] = []
-    let configuration = ARWorldTrackingConfiguration()
-    var done: Bool = false
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        sceneView.delegate = self
-        sceneView.showsStatistics = true
-        let scene = SCNScene()
-        sceneView.scene = scene
-        navigationController?.setNavigationBarHidden(true, animated: false)
-        runSession()
-        mapView.delegate = self
-        locationService = LocationService()
-        locationService.delegate = self
-        locationService.startUpdatingLocation()
-        destinationLocation = CLLocationCoordinate2D(latitude: 40.736248, longitude: -73.979397)
-        
-        if destinationLocation != nil {
-            navigationService.getDirections(destinationLocation: destinationLocation, request: MKDirectionsRequest()) { steps in
-                for step in steps {
-                    self.annons.append(POIAnnotation(point: PointOfInterest(name: "N " + String(describing: step.instructions), coordinate: step.getLocation().coordinate)))
-                }
-                self.steps.append(contentsOf: steps)
+    private var locationUpdates: Int = 0 {
+        didSet {
+            if locationUpdates == 8 {
+                updateNodes = false
             }
         }
     }
+    
+    private var annotationColor = UIColor.blue
+    
+    private var updateNodes: Bool = true
+    private var anchors: [ARAnchor] = []
+    private var nodes: [BaseNode] = []
+    private var steps: [MKRouteStep] = []
+    
+    private var locationService = LocationService()
+    private var navigationService = NavigationService()
+    
+    internal var annotations: [POIAnnotation] = []
+    
+    internal var startingLocation: CLLocation!
+    private var destinationLocation: CLLocationCoordinate2D!
+    
+    private var locations: [CLLocation] = []
+    
+    private var currentLegs: [[CLLocationCoordinate2D]] = []
+    private var currentLeg: [CLLocationCoordinate2D] = []
+    private var updatedLocations: [CLLocation] = []
+    private let configuration = ARWorldTrackingConfiguration()
+    
+    private var done: Bool = false
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupScene()
+        setupLocationService()
+        setupNavigation()
+    }
+    
     @IBAction func resetButtonTapped(_ sender: Any) {
         removeAllAnnotations()
     }
@@ -67,7 +67,35 @@ class ViewController: UIViewController, MessagePresenting, Controller {
         locationService.startUpdatingLocation()
     }
     
-    func getLocationData() {
+    private func setupLocationService() {
+        mapView.delegate = self
+        locationService = LocationService()
+        locationService.delegate = self
+        locationService.startUpdatingLocation()
+    }
+    
+    private func setupNavigation() {
+        destinationLocation = CLLocationCoordinate2D(latitude: 40.736248, longitude: -73.979397)
+        if destinationLocation != nil {
+            navigationService.getDirections(destinationLocation: destinationLocation, request: MKDirectionsRequest()) { steps in
+                for step in steps {
+                    self.annotations.append(POIAnnotation(point: PointOfInterest(name: "N " + String(describing: step.instructions), coordinate: step.getLocation().coordinate)))
+                }
+                self.steps.append(contentsOf: steps)
+            }
+        }
+    }
+    
+    private func setupScene() {
+        sceneView.delegate = self
+        sceneView.showsStatistics = true
+        let scene = SCNScene()
+        sceneView.scene = scene
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        runSession()
+    }
+    
+    private func getLocationData() {
         for (index, step) in steps.enumerated() {
             setTripLegFromStep(step, and: index)
         }
@@ -77,18 +105,18 @@ class ViewController: UIViewController, MessagePresenting, Controller {
         done = true
     }
     
-    func setLeg(from previous: CLLocation, to next: CLLocation) -> [CLLocationCoordinate2D] {
+    private func setLeg(from previous: CLLocation, to next: CLLocation) -> [CLLocationCoordinate2D] {
         return CLLocationCoordinate2D.getIntermediaryLocations(currentLocation: previous, destinationLocation: next)
     }
     
-    func update(intermediary locations: [CLLocationCoordinate2D]) {
+    private func update(intermediary locations: [CLLocationCoordinate2D]) {
         for intermediary in locations {
-            annons.append(POIAnnotation(point: PointOfInterest(name: String(describing: intermediary), coordinate: intermediary)))
+            annotations.append(POIAnnotation(point: PointOfInterest(name: String(describing: intermediary), coordinate: intermediary)))
             self.locations.append(CLLocation(latitude: intermediary.latitude, longitude: intermediary.longitude))
         }
     }
     
-    func setTripLegFromStep(_ step: MKRouteStep, and index: Int) {
+    private func setTripLegFromStep(_ step: MKRouteStep, and index: Int) {
         if index > 0 {
             getTripLeg(for: index, and: step)
         } else {
@@ -96,7 +124,7 @@ class ViewController: UIViewController, MessagePresenting, Controller {
         }
     }
     
-    func getTripLeg(for index: Int, and step: MKRouteStep) {
+    private func getTripLeg(for index: Int, and step: MKRouteStep) {
         let previousIndex = index - 1
         let previous = steps[previousIndex]
         let previousLocation = CLLocation(latitude: previous.polyline.coordinate.latitude, longitude: previous.polyline.coordinate.longitude)
@@ -105,7 +133,7 @@ class ViewController: UIViewController, MessagePresenting, Controller {
         currentLegs.append(intermediaries)
     }
     
-    func getInitialLeg(for step: MKRouteStep) {
+    private func getInitialLeg(for step: MKRouteStep) {
         let nextLocation = CLLocation(latitude: step.polyline.coordinate.latitude, longitude: step.polyline.coordinate.longitude)
         let intermediaries = CLLocationCoordinate2D.getIntermediaryLocations(currentLocation: self.startingLocation, destinationLocation: nextLocation)
         currentLegs.append(intermediaries)
@@ -131,7 +159,7 @@ class ViewController: UIViewController, MessagePresenting, Controller {
         }
     }
     
-    func showPointsOfInterestInMap(currentLegs: [[CLLocationCoordinate2D]]) {
+    private func showPointsOfInterestInMap(currentLegs: [[CLLocationCoordinate2D]]) {
         mapView.removeAnnotations(mapView.annotations)
         for leg in currentLegs {
             for item in leg {
@@ -141,8 +169,8 @@ class ViewController: UIViewController, MessagePresenting, Controller {
         }
     }
     
-    func addAnnotations() {
-        annons.forEach { annotation in
+    private func addAnnotations() {
+        annotations.forEach { annotation in
             DispatchQueue.main.async {
                 if let title = annotation.title, title.hasPrefix("N") {
                     self.annotationColor = .green
@@ -155,29 +183,31 @@ class ViewController: UIViewController, MessagePresenting, Controller {
         }
     }
     
-    func updateNodePosition() {
-        SCNTransaction.begin()
-        SCNTransaction.animationDuration = 0.5
-        if updatedLocations.count > 0 {
-            startingLocation = CLLocation.bestLocationEstimate(locations: updatedLocations)
-            for baseNode in nodes {
-                let translation = MatrixHelper.transformMatrix(for: matrix_identity_float4x4, originLocation: startingLocation, location: baseNode.location)
-                let position = positionFromTransform(translation)
-                let distance = baseNode.location.distance(from: startingLocation)
-                DispatchQueue.main.async {
-                    let scale = 100 / Float(distance)
-                    baseNode.scale = SCNVector3(x: scale, y: scale, z: scale)
-                    baseNode.anchor = ARAnchor(transform: translation)
-                    baseNode.position = position
+    private func updateNodePosition() {
+        if updateNodes {
+            SCNTransaction.begin()
+            SCNTransaction.animationDuration = 0.5
+            if updatedLocations.count > 0 {
+                startingLocation = CLLocation.bestLocationEstimate(locations: updatedLocations)
+                for baseNode in nodes {
+                    let translation = MatrixHelper.transformMatrix(for: matrix_identity_float4x4, originLocation: startingLocation, location: baseNode.location)
+                    let position = positionFromTransform(translation)
+                    let distance = baseNode.location.distance(from: startingLocation)
+                    DispatchQueue.main.async {
+                        let scale = 100 / Float(distance)
+                        baseNode.scale = SCNVector3(x: scale, y: scale, z: scale)
+                        baseNode.anchor = ARAnchor(transform: translation)
+                        baseNode.position = position
+                    }
                 }
             }
+            SCNTransaction.commit()
         }
-        SCNTransaction.commit()
     }
     
     // For navigation route step add sphere node
     
-    func addSphere(for step: MKRouteStep) {
+    private func addSphere(for step: MKRouteStep) {
         let stepLocation = step.getLocation()
         let locationTransform = MatrixHelper.transformMatrix(for: matrix_identity_float4x4, originLocation: startingLocation, location: stepLocation)
         let stepAnchor = ARAnchor(transform: locationTransform)
@@ -193,7 +223,7 @@ class ViewController: UIViewController, MessagePresenting, Controller {
     
     // For intermediary locations - CLLocation - add sphere
     
-    func addSphere(for location: CLLocation) {
+    private func addSphere(for location: CLLocation) {
         let locationTransform = MatrixHelper.transformMatrix(for: matrix_identity_float4x4, originLocation: startingLocation, location: location)
         let stepAnchor = ARAnchor(transform: locationTransform)
         let sphere = BaseNode(title: "Title", location: location)
@@ -234,8 +264,8 @@ extension ViewController: ARSCNViewDelegate {
 extension ViewController: LocationServiceDelegate {
     
     func trackingLocation(for currentLocation: CLLocation) {
+        locationUpdates += 1
         if currentLocation.horizontalAccuracy <= 65.0 {
-            print("LOCATION ACCURATE")
             updatedLocations.append(currentLocation)
             updateNodePosition()
         }
@@ -279,7 +309,7 @@ extension ViewController: MKMapViewDelegate {
 
 extension ViewController:  Mapable {
     
-    func removeAllAnnotations() {
+    private func removeAllAnnotations() {
         for anchor in anchors {
             sceneView.session.remove(anchor: anchor)
         }
@@ -291,11 +321,11 @@ extension ViewController:  Mapable {
     
     // Get the position of a node in sceneView for matrix transformation
     
-    func positionFromTransform(_ transform: matrix_float4x4) -> SCNVector3 {
+    private func positionFromTransform(_ transform: matrix_float4x4) -> SCNVector3 {
         return SCNVector3Make(transform.columns.3.x, transform.columns.3.y, transform.columns.3.z)
     }
     
-    func addAnchors(steps: [MKRouteStep]) {
+    private func addAnchors(steps: [MKRouteStep]) {
         guard startingLocation != nil && steps.count > 0 else { return }
         for step in steps {
             addSphere(for: step)

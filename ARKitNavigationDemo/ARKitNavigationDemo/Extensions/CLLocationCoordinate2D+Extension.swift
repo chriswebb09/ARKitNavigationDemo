@@ -44,6 +44,7 @@ extension CLLocationCoordinate2D: Equatable {
 }
 
 extension CLLocationCoordinate2D {
+    
     func coordinate(with bearing: Double, and distance: Double) -> CLLocationCoordinate2D {
         let distRadiansLat = distance / metersPerRadianLat  // earth radius in meters latitude
         let distRadiansLong = distance / metersPerRadianLon // earth radius in meters longitude
