@@ -7,8 +7,14 @@
 //
 
 import UIKit
-
 import MapKit
+
+struct LocationData {
+    var destinationLocation: CLLocation! 
+    var annotations: [POIAnnotation]
+    var legs: [[CLLocationCoordinate2D]]
+    var steps: [MKRouteStep]
+}
 
 class MainCoordinator: AppCoordinator {
     
@@ -16,6 +22,8 @@ class MainCoordinator: AppCoordinator {
     
     var childCoordinators: [ControllerCoordinator] = []
     var window: UIWindow
+    
+    var locationData: LocationData!
     
     init(window: UIWindow) {
         self.window = window
@@ -33,6 +41,10 @@ class MainCoordinator: AppCoordinator {
 }
 
 extension MainCoordinator: ControllerCoordinatorDelegate {
+    func setLocationData(for route: [POIAnnotation], with startingLocation: CLLocation, and legs: [[CLLocationCoordinate2D]], and steps: [MKRouteStep]) {
+       locationData = LocationData(destinationLocation: startingLocation, annotations: route, legs: legs, steps: steps)
+    }
+    
     
     // Switch between application flows
     
@@ -41,9 +53,12 @@ extension MainCoordinator: ControllerCoordinatorDelegate {
         // Remove previous application flow
         
         childCoordinators.removeAll()
+        
         switch type {
+            
         case .app:
             let navCoordinator = NavigationControllerCoordinator(window: window)
+            navCoordinator.locationData = locationData
             addChildCoordinator(navCoordinator)
             navCoordinator.type = .nav
             navCoordinator.start()

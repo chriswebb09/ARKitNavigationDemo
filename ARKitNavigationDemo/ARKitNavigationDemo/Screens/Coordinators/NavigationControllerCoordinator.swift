@@ -12,6 +12,7 @@ class NavigationControllerCoordinator: ControllerCoordinator {
     
     var window: UIWindow
     var rootController: RootController!
+    var locationData: LocationData!
     
     weak var delegate: ControllerCoordinatorDelegate?
     
@@ -23,6 +24,7 @@ class NavigationControllerCoordinator: ControllerCoordinator {
         didSet {
             if let storyboard = try? UIStoryboard(.navigation) {
                 if let viewController: ViewController = try? storyboard.instantiateViewController() {
+                    viewController.locationData = self.locationData
                     rootController = viewController
                     viewController.setup()
                 }

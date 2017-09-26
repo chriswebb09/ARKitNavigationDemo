@@ -17,29 +17,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Start" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1cr-te-IUp">
-                                <rect key="frame" x="166" y="118" width="38" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jmg-rz-hdm">
-                                <rect key="frame" x="172" y="428" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Go!"/>
-                                <connections>
-                                    <action selector="goButtonTapped:" destination="cls-4U-gzR" eventType="touchUpInside" id="uog-kQ-rGg"/>
-                                </connections>
-                            </button>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Emw-Cr-LBC">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="677"/>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Emw-Cr-LBC" firstAttribute="height" secondItem="010-K8-ou6" secondAttribute="height" constant="10" id="AUz-ow-rgC"/>
+                            <constraint firstItem="Emw-Cr-LBC" firstAttribute="centerX" secondItem="g6A-h6-PJs" secondAttribute="centerX" id="PiR-pC-9ua"/>
+                            <constraint firstItem="Emw-Cr-LBC" firstAttribute="width" secondItem="010-K8-ou6" secondAttribute="width" id="YPx-CE-Q37"/>
+                            <constraint firstItem="Emw-Cr-LBC" firstAttribute="centerY" secondItem="g6A-h6-PJs" secondAttribute="centerY" id="kmP-pU-cxu"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="g6A-h6-PJs"/>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="Emw-Cr-LBC" id="ctV-0T-YoG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u5o-MF-3h8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="158" y="134"/>
+            <point key="canvasLocation" x="157.59999999999999" y="133.5832083958021"/>
         </scene>
     </scenes>
 </document>

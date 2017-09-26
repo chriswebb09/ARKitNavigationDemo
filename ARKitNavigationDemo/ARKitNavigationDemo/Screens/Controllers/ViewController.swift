@@ -27,6 +27,8 @@ class ViewController: UIViewController, MessagePresenting, Controller {
         }
     }
     
+    var locationData: LocationData!
+    
     private var annotationColor = UIColor.blue
     
     private var updateNodes: Bool = true
@@ -35,7 +37,6 @@ class ViewController: UIViewController, MessagePresenting, Controller {
     private var steps: [MKRouteStep] = []
     
     private var locationService = LocationService()
-    private var navigationService = NavigationService()
     
     internal var annotations: [POIAnnotation] = []
     
@@ -45,7 +46,6 @@ class ViewController: UIViewController, MessagePresenting, Controller {
     private var locations: [CLLocation] = []
     
     private var currentLegs: [[CLLocationCoordinate2D]] = []
-    private var currentLeg: [CLLocationCoordinate2D] = []
     private var updatedLocations: [CLLocation] = []
     private let configuration = ARWorldTrackingConfiguration()
     
@@ -75,15 +75,14 @@ class ViewController: UIViewController, MessagePresenting, Controller {
     }
     
     private func setupNavigation() {
-        destinationLocation = CLLocationCoordinate2D(latitude: 40.736248, longitude: -73.979397)
-        if destinationLocation != nil {
-            navigationService.getDirections(destinationLocation: destinationLocation, request: MKDirectionsRequest()) { steps in
-                for step in steps {
-                    self.annotations.append(POIAnnotation(point: PointOfInterest(name: "N " + String(describing: step.instructions), coordinate: step.getLocation().coordinate)))
-                }
-                self.steps.append(contentsOf: steps)
-            }
+        if locationData != nil {
+            self.steps.append(contentsOf: locationData.steps)
+            self.currentLegs.append(contentsOf: locationData.legs)
+            let coordinates = currentLegs.flatMap { $0 }
+            self.locations = coordinates.map { CLLocation(latitude: $0.latitude, longitude: $0.longitude) }
+            self.annotations.append(contentsOf: annotations)
         }
+        done = true
     }
     
     private func setupScene() {
@@ -95,59 +94,15 @@ class ViewController: UIViewController, MessagePresenting, Controller {
         runSession()
     }
     
-    private func getLocationData() {
-        for (index, step) in steps.enumerated() {
-            setTripLegFromStep(step, and: index)
-        }
-        for leg in currentLegs {
-            update(intermediary: leg)
-        }
-        done = true
-    }
-    
-    private func setLeg(from previous: CLLocation, to next: CLLocation) -> [CLLocationCoordinate2D] {
-        return CLLocationCoordinate2D.getIntermediaryLocations(currentLocation: previous, destinationLocation: next)
-    }
-    
-    private func update(intermediary locations: [CLLocationCoordinate2D]) {
-        for intermediary in locations {
-            annotations.append(POIAnnotation(point: PointOfInterest(name: String(describing: intermediary), coordinate: intermediary)))
-            self.locations.append(CLLocation(latitude: intermediary.latitude, longitude: intermediary.longitude))
-        }
-    }
-    
-    private func setTripLegFromStep(_ step: MKRouteStep, and index: Int) {
-        if index > 0 {
-            getTripLeg(for: index, and: step)
-        } else {
-            getInitialLeg(for: step)
-        }
-    }
-    
-    private func getTripLeg(for index: Int, and step: MKRouteStep) {
-        let previousIndex = index - 1
-        let previous = steps[previousIndex]
-        let previousLocation = CLLocation(latitude: previous.polyline.coordinate.latitude, longitude: previous.polyline.coordinate.longitude)
-        let nextLocation = CLLocation(latitude: step.polyline.coordinate.latitude, longitude: step.polyline.coordinate.longitude)
-        let intermediaries = CLLocationCoordinate2D.getIntermediaryLocations(currentLocation: previousLocation, destinationLocation: nextLocation)
-        currentLegs.append(intermediaries)
-    }
-    
-    private func getInitialLeg(for step: MKRouteStep) {
-        let nextLocation = CLLocation(latitude: step.polyline.coordinate.latitude, longitude: step.polyline.coordinate.longitude)
-        let intermediaries = CLLocationCoordinate2D.getIntermediaryLocations(currentLocation: self.startingLocation, destinationLocation: nextLocation)
-        currentLegs.append(intermediaries)
-    }
-    
     func runSession() {
         configuration.worldAlignment = .gravityAndHeading
         sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print(updatedLocations.count)
         if updatedLocations.count > 0 {
             startingLocation = CLLocation.bestLocationEstimate(locations: updatedLocations)
-            getLocationData()
             if (startingLocation != nil && mapView.annotations.count == 0) && done == true {
                 DispatchQueue.main.async {
                     self.showPointsOfInterestInMap(currentLegs: self.currentLegs)
@@ -160,7 +115,7 @@ class ViewController: UIViewController, MessagePresenting, Controller {
     }
     
     private func showPointsOfInterestInMap(currentLegs: [[CLLocationCoordinate2D]]) {
-        mapView.removeAnnotations(mapView.annotations)
+        // mapView.removeAnnotations(mapView.annotations)
         for leg in currentLegs {
             for item in leg {
                 let poi = POIAnnotation(point: PointOfInterest(name: String(describing: item), coordinate: item))

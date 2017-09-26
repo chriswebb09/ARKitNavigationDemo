@@ -7,13 +7,13 @@
 //
 
 import UIKit
+import MapKit
 
 class StartControllerCoordinator: ControllerCoordinator {
     
     var window: UIWindow
     
     var rootController: RootController!
-    
     weak var delegate: ControllerCoordinatorDelegate?
     
     private var navigationController: UINavigationController {
@@ -25,6 +25,7 @@ class StartControllerCoordinator: ControllerCoordinator {
             if let storyboard = try? UIStoryboard(.start) {
                 if let viewController: StartViewController = try? storyboard.instantiateViewController() {
                     rootController = viewController
+                    
                     viewController.delegate = self
                 }
             }
@@ -43,6 +44,12 @@ class StartControllerCoordinator: ControllerCoordinator {
 }
 
 extension StartControllerCoordinator: StartViewControllerDelegate {
+    func startNavigation(with route: [POIAnnotation], for destination: CLLocation, and legs: [[CLLocationCoordinate2D]], and step: [MKRouteStep]) {
+        delegate?.setLocationData(for: route, with: destination, and: legs, and: step)
+        delegate?.transitionCoordinator(type: .app)
+    }
+
+    
     func startNavigation(tapped: Bool) {
         delegate?.transitionCoordinator(type: .app)
     }

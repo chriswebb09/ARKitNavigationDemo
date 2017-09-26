@@ -11,7 +11,6 @@ import MapKit
 protocol Mapable: class  {
     var startingLocation: CLLocation! { get set }
     var mapView: MKMapView! { get set }
-    var annotations: [POIAnnotation] { get set }
 }
 
 extension Mapable {
