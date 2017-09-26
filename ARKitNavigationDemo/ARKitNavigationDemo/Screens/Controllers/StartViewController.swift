@@ -27,7 +27,7 @@ class StartViewController: UIViewController, Controller {
     
     private var locations: [CLLocation] = []
     var startingLocation: CLLocation!
-    
+    var press: UILongPressGestureRecognizer!
     var destinationLocation: CLLocationCoordinate2D! {
         didSet {
             self.setupNavigation()
@@ -40,10 +40,10 @@ class StartViewController: UIViewController, Controller {
         super.viewDidLoad()
         locationService.delegate = self
         locationService.startUpdatingLocation()
-        let press = UILongPressGestureRecognizer(target: self, action: #selector(handleMapTap(gesture:)))
+        press = UILongPressGestureRecognizer(target: self, action: #selector(handleMapTap(gesture:)))
         press.minimumPressDuration = 0.5
-        self.mapView.addGestureRecognizer(press)
-        self.mapView.delegate = self
+        mapView.addGestureRecognizer(press)
+        mapView.delegate = self
     }
     
     @objc func handleMapTap(gesture: UIGestureRecognizer) {
