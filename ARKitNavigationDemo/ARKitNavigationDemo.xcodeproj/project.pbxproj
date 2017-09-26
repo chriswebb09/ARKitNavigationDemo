@@ -38,7 +38,6 @@
 		A74AF0F61F6CAAA20000CD5F /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74AF0F51F6CAAA20000CD5F /* MainCoordinator.swift */; };
 		A74AF0F81F6CAAB00000CD5F /* StartControllerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74AF0F71F6CAAB00000CD5F /* StartControllerCoordinator.swift */; };
 		A74AF0FA1F6CAAC30000CD5F /* NavigationControllerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74AF0F91F6CAAC30000CD5F /* NavigationControllerCoordinator.swift */; };
-		A79518BE1F7A1BB10030E21A /* CircularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79518BD1F7A1BB10030E21A /* CircularButton.swift */; };
 		A79518C01F7A1E280030E21A /* ControllerCoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79518BF1F7A1E280030E21A /* ControllerCoordinatorDelegate.swift */; };
 		A79518C21F7A1E4F0030E21A /* ControllerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79518C11F7A1E4F0030E21A /* ControllerType.swift */; };
 		A79518C41F7A1E640030E21A /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79518C31F7A1E640030E21A /* Controller.swift */; };
@@ -109,7 +108,6 @@
 		A74AF0F51F6CAAA20000CD5F /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		A74AF0F71F6CAAB00000CD5F /* StartControllerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartControllerCoordinator.swift; sourceTree = "<group>"; };
 		A74AF0F91F6CAAC30000CD5F /* NavigationControllerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerCoordinator.swift; sourceTree = "<group>"; };
-		A79518BD1F7A1BB10030E21A /* CircularButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularButton.swift; sourceTree = "<group>"; };
 		A79518BF1F7A1E280030E21A /* ControllerCoordinatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerCoordinatorDelegate.swift; sourceTree = "<group>"; };
 		A79518C11F7A1E4F0030E21A /* ControllerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerType.swift; sourceTree = "<group>"; };
 		A79518C31F7A1E640030E21A /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
@@ -182,7 +180,6 @@
 				A74AF0EC1F6CA97B0000CD5F /* Models */,
 				A74AF0E81F6CA9290000CD5F /* Extensions */,
 				A74AF0F11F6CAA070000CD5F /* Storyboards */,
-				A79518BD1F7A1BB10030E21A /* CircularButton.swift */,
 			);
 			path = ARKitNavigationDemo;
 			sourceTree = "<group>";
@@ -494,7 +491,6 @@
 				A79518CE1F7A1F2C0030E21A /* NavigationViewControllerDelegate.swift in Sources */,
 				A74AF0CD1F6CA3710000CD5F /* AppCoordinator.swift in Sources */,
 				A79518D01F7A1F6E0030E21A /* LocationServiceDelegate.swift in Sources */,
-				A79518BE1F7A1BB10030E21A /* CircularButton.swift in Sources */,
 				A74AF0DB1F6CA3FA0000CD5F /* MatrixHelper.swift in Sources */,
 				A74AF0CF1F6CA3850000CD5F /* StoryboardIdentifiable.swift in Sources */,
 				A79518D21F7A1FB10030E21A /* StoryboardIdentifiableError.swift in Sources */,

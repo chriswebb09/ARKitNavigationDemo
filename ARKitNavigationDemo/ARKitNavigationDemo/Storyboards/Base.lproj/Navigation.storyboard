@@ -32,9 +32,9 @@
                                     <constraint firstAttribute="height" constant="334" id="ZeW-us-FdJ"/>
                                 </constraints>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kIc-vA-l2b" customClass="PushButton" customModule="ARKitNavigationDemo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="621" width="37.5" height="33.5"/>
-                                <state key="normal">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kIc-vA-l2b">
+                                <rect key="frame" x="0.0" y="621" width="74" height="34"/>
+                                <state key="normal" title="Reset">
                                     <color key="titleColor" red="0.30364087709770227" green="0.52067719670155532" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -55,7 +55,7 @@
                             <constraint firstItem="qP7-DK-vfk" firstAttribute="leading" secondItem="o3r-2s-jwy" secondAttribute="leading" id="8sH-tE-ueY"/>
                             <constraint firstItem="kIc-vA-l2b" firstAttribute="top" secondItem="o3r-2s-jwy" secondAttribute="bottom" constant="-46" id="K2f-33-1qC"/>
                             <constraint firstItem="qP7-DK-vfk" firstAttribute="leading" secondItem="Ma0-Fz-KrA" secondAttribute="leading" id="KFt-uH-ItJ"/>
-                            <constraint firstItem="kIc-vA-l2b" firstAttribute="width" secondItem="o3r-2s-jwy" secondAttribute="width" multiplier="0.1" id="TOF-i1-Gw1"/>
+                            <constraint firstItem="kIc-vA-l2b" firstAttribute="width" secondItem="o3r-2s-jwy" secondAttribute="width" multiplier="0.21" id="TOF-i1-Gw1"/>
                             <constraint firstItem="kIc-vA-l2b" firstAttribute="height" secondItem="o3r-2s-jwy" secondAttribute="height" multiplier="0.1" id="YES-Yr-PcM"/>
                             <constraint firstItem="o3r-2s-jwy" firstAttribute="top" secondItem="qP7-DK-vfk" secondAttribute="bottom" id="jPi-qv-VAK"/>
                             <constraint firstItem="o3r-2s-jwy" firstAttribute="bottom" secondItem="qRm-Jb-I29" secondAttribute="bottom" id="xk5-CK-T9H"/>
