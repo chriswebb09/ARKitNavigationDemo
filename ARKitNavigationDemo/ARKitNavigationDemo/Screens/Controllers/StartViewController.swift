@@ -87,8 +87,8 @@ class StartViewController: UIViewController, Controller {
         self.showPointsOfInterestInMap(currentLegs: self.currentLegs)
         self.addAnnotations()
         DispatchQueue.main.async {
-            let alertController = UIAlertController(title: "Navigate to your destination?", message: "You've selected \(String(describing: self.title))", preferredStyle: .alert)
-            let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            let alertController = UIAlertController(title: "Navigate to your destination?", message: "You've selected destination.", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "No thanks.", style: .cancel, handler: nil)
             let okayAction = UIAlertAction(title: "Go!", style: .default, handler: { action in
                 let destination = CLLocation(latitude: self.destinationLocation.latitude, longitude: self.destinationLocation.longitude)
                 self.delegate?.startNavigation(with: self.annotations, for: destination, and: self.currentLegs, and: self.steps)

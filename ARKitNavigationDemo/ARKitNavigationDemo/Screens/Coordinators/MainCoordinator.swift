@@ -34,10 +34,10 @@ class MainCoordinator: AppCoordinator {
 }
 
 extension MainCoordinator: ControllerCoordinatorDelegate {
-    func setLocationData(for route: [POIAnnotation], with startingLocation: CLLocation, and legs: [[CLLocationCoordinate2D]], and steps: [MKRouteStep]) {
-       locationData = LocationData(destinationLocation: startingLocation, annotations: route, legs: legs, steps: steps)
-    }
     
+    func setLocationData(for route: [POIAnnotation], with startingLocation: CLLocation, and legs: [[CLLocationCoordinate2D]], and steps: [MKRouteStep]) {
+        locationData = LocationData(destinationLocation: startingLocation, annotations: route, legs: legs, steps: steps)
+    }
     
     // Switch between application flows
     
@@ -50,12 +50,15 @@ extension MainCoordinator: ControllerCoordinatorDelegate {
         switch type {
             
         case .app:
+            
             let navCoordinator = NavigationControllerCoordinator(window: window)
             navCoordinator.locationData = locationData
             addChildCoordinator(navCoordinator)
             navCoordinator.type = .nav
             navCoordinator.start()
+            
         case .start:
+            
             let startCoordinator = StartControllerCoordinator(window: window)
             addChildCoordinator(startCoordinator)
             startCoordinator.delegate = self 

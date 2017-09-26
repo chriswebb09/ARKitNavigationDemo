@@ -50,6 +50,7 @@
 		A79518D01F7A1F6E0030E21A /* LocationServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79518CF1F7A1F6E0030E21A /* LocationServiceDelegate.swift */; };
 		A79518D21F7A1FB10030E21A /* StoryboardIdentifiableError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79518D11F7A1FB10030E21A /* StoryboardIdentifiableError.swift */; };
 		A79518D41F7A1FF90030E21A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79518D31F7A1FF90030E21A /* Constants.swift */; };
+		A79518D61F7A24270030E21A /* ApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79518D51F7A24270030E21A /* ApplicationService.swift */; };
 		A7B30E7B1F79D9C600BDA025 /* StartViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B30E7A1F79D9C600BDA025 /* StartViewControllerDelegate.swift */; };
 /* End PBXBuildFile section */
 
@@ -120,6 +121,7 @@
 		A79518CF1F7A1F6E0030E21A /* LocationServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationServiceDelegate.swift; sourceTree = "<group>"; };
 		A79518D11F7A1FB10030E21A /* StoryboardIdentifiableError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardIdentifiableError.swift; sourceTree = "<group>"; };
 		A79518D31F7A1FF90030E21A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A79518D51F7A24270030E21A /* ApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationService.swift; sourceTree = "<group>"; };
 		A7B30E7A1F79D9C600BDA025 /* StartViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewControllerDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -263,6 +265,7 @@
 				A74AF0C41F6CA2A50000CD5F /* LocationService.swift */,
 				A79518CF1F7A1F6E0030E21A /* LocationServiceDelegate.swift */,
 				A74AF0C21F6CA2650000CD5F /* NavigationService.swift */,
+				A79518D51F7A24270030E21A /* ApplicationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -503,6 +506,7 @@
 				A79518C21F7A1E4F0030E21A /* ControllerType.swift in Sources */,
 				A79518CA1F7A1EE60030E21A /* LocationTranslation.swift in Sources */,
 				A74AF0E71F6CA4B40000CD5F /* UIStoryboard+Extension.swift in Sources */,
+				A79518D61F7A24270030E21A /* ApplicationService.swift in Sources */,
 				A79518C81F7A1E950030E21A /* CoordinatorDelegate.swift in Sources */,
 				A79518D41F7A1FF90030E21A /* Constants.swift in Sources */,
 				A74AF0F81F6CAAB00000CD5F /* StartControllerCoordinator.swift in Sources */,

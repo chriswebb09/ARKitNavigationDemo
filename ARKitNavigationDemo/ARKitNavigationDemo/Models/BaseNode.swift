@@ -38,7 +38,6 @@ class BaseNode: SCNNode {
     
     func addSphere(with radius: CGFloat, and color: UIColor) {
         let sphereNode = createSphereNode(with: radius, color: color)
-        addLight(sphereNode: sphereNode)
         addChildNode(sphereNode)
     }
     

@@ -10,6 +10,7 @@ import Foundation
 import CoreLocation
 
 class LocationService: NSObject, CLLocationManagerDelegate {
+    
     var locationManager: CLLocationManager?
     var lastLocation: CLLocation?
     var delegate: LocationServiceDelegate?

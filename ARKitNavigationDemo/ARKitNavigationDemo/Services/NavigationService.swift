@@ -9,11 +9,6 @@
 import MapKit
 import CoreLocation
 
-struct ApplicationServices {
-    var navService: NavigationService
-    var locationService: LocationService
-}
-
 struct NavigationService {
     
     func getDirections(destinationLocation: CLLocationCoordinate2D, request: MKDirectionsRequest, completion: @escaping ([MKRouteStep]) -> Void) {
