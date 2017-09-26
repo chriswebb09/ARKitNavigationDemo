@@ -9,11 +9,6 @@
 import Foundation
 import CoreLocation
 
-protocol LocationServiceDelegate: class {
-    func trackingLocation(for currentLocation: CLLocation)
-    func trackingLocationDidFail(with error: Error)
-}
-
 class LocationService: NSObject, CLLocationManagerDelegate {
     var locationManager: CLLocationManager?
     var lastLocation: CLLocation?

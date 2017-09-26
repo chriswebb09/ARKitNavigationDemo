@@ -9,13 +9,6 @@
 import UIKit
 import MapKit
 
-struct LocationData {
-    var destinationLocation: CLLocation! 
-    var annotations: [POIAnnotation]
-    var legs: [[CLLocationCoordinate2D]]
-    var steps: [MKRouteStep]
-}
-
 class MainCoordinator: AppCoordinator {
     
     weak var delegate: ControllerCoordinatorDelegate?
@@ -65,6 +58,7 @@ extension MainCoordinator: ControllerCoordinatorDelegate {
         case .start:
             let startCoordinator = StartControllerCoordinator(window: window)
             addChildCoordinator(startCoordinator)
+            startCoordinator.delegate = self 
             startCoordinator.type = .start
             startCoordinator.start()
         }

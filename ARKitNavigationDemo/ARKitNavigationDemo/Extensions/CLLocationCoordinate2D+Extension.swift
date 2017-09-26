@@ -8,7 +8,6 @@
 //
 
 import CoreLocation
-import GLKit
 
 extension CLLocationCoordinate2D: Equatable {
     
@@ -41,13 +40,10 @@ extension CLLocationCoordinate2D: Equatable {
         let radiansBearing = atan2(y, x)
         return radiansBearing
     }
-}
-
-extension CLLocationCoordinate2D {
     
     func coordinate(with bearing: Double, and distance: Double) -> CLLocationCoordinate2D {
-        let distRadiansLat = distance / metersPerRadianLat  // earth radius in meters latitude
-        let distRadiansLong = distance / metersPerRadianLon // earth radius in meters longitude
+        let distRadiansLat = distance / LocationConstants.metersPerRadianLat  // earth radius in meters latitude
+        let distRadiansLong = distance / LocationConstants.metersPerRadianLon // earth radius in meters longitude
         let lat1 = self.latitude.toRadians()
         let lon1 = self.longitude.toRadians()
         let lat2 = asin(sin(lat1) * cos(distRadiansLat) + cos(lat1) * sin(distRadiansLat) * cos(bearing))

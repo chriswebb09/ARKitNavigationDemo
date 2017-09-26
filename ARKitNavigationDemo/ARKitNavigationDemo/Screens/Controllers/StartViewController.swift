@@ -10,11 +10,6 @@ import UIKit
 import MapKit
 import CoreLocation
 
-protocol StartViewControllerDelegate: class {
-    func startNavigation(tapped: Bool)
-    func startNavigation(with route: [POIAnnotation], for destination: CLLocation, and legs: [[CLLocationCoordinate2D]], and step: [MKRouteStep])
-}
-
 class StartViewController: UIViewController, Controller {
     
     @IBOutlet weak var mapView: MKMapView!
@@ -52,6 +47,7 @@ class StartViewController: UIViewController, Controller {
     }
     
     @objc func handleMapTap(gesture: UIGestureRecognizer) {
+        print("tap")
         if gesture.state != UIGestureRecognizerState.began {
             return
         }
@@ -90,15 +86,18 @@ class StartViewController: UIViewController, Controller {
         self.centerMapInInitialCoordinates()
         self.showPointsOfInterestInMap(currentLegs: self.currentLegs)
         self.addAnnotations()
-        let alertController = UIAlertController(title: "Navigate to your destination?", message: "You've selected \(String(describing: title))", preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        let okayAction = UIAlertAction(title: "Go!", style: .default, handler: { action in
-            let destination = CLLocation(latitude: self.destinationLocation.latitude, longitude: self.destinationLocation.longitude)
-            self.delegate?.startNavigation(with: self.annotations, for: destination, and: self.currentLegs, and: self.steps)
-        })
-        alertController.addAction(cancelAction)
-        alertController.addAction(okayAction)
-        present(alertController, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            let alertController = UIAlertController(title: "Navigate to your destination?", message: "You've selected \(String(describing: self.title))", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            let okayAction = UIAlertAction(title: "Go!", style: .default, handler: { action in
+                let destination = CLLocation(latitude: self.destinationLocation.latitude, longitude: self.destinationLocation.longitude)
+                self.delegate?.startNavigation(with: self.annotations, for: destination, and: self.currentLegs, and: self.steps)
+            })
+            alertController.addAction(cancelAction)
+            alertController.addAction(okayAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
+      
     }
     
     private func setLeg(from previous: CLLocation, to next: CLLocation) -> [CLLocationCoordinate2D] {

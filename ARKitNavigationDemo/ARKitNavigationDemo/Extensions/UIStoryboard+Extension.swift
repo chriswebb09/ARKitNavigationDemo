@@ -38,9 +38,6 @@ extension UIStoryboard {
 
 // MARK: - Storyboard Identifiable Error
 
-enum StoryboardIdentifiableError: Error {
-    case unrecognizedIdentifier, unrecognizedType
-}
 
 // MARK: - View Controller
 

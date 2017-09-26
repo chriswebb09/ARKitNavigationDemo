@@ -7,20 +7,6 @@
 //
 
 import UIKit
-import MapKit
-
-enum  ControllerType {
-    case nav, start, none
-}
-
-protocol Controller: class {
-    var type: ControllerType { get }
-}
-
-protocol ControllerCoordinatorDelegate: CoordinatorDelegate {
-    func transitionCoordinator(type: CoordinatorType)
-    func setLocationData(for route: [POIAnnotation], with destination: CLLocation, and legs: [[CLLocationCoordinate2D]], and steps: [MKRouteStep])
-}
 
 typealias RootController = UIViewController & Controller
 

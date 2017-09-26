@@ -10,8 +10,7 @@ import CoreLocation
 import GLKit
 import SceneKit
 
-let metersPerRadianLat: Double = 6373000.0
-let metersPerRadianLon: Double = 5602900.0
+
 
 func -(left: CLLocationCoordinate2D, right: CLLocationCoordinate2D) -> CLLocationDistance {
     let leftLatRadian = left.latitude.toRadians()
@@ -82,16 +81,5 @@ extension CLLocation {
             return $0.horizontalAccuracy < $1.horizontalAccuracy
         })
         return sortedLocationEstimates.first!
-    }
-}
-
-struct LocationTranslation {
-    var latitudeTranslation: Double
-    var longitudeTranslation: Double
-    var altitudeTranslation: Double
-    init(latitudeTranslation: Double, longitudeTranslation: Double, altitudeTranslation: Double) {
-        self.latitudeTranslation = latitudeTranslation
-        self.longitudeTranslation = longitudeTranslation
-        self.altitudeTranslation = altitudeTranslation
     }
 }

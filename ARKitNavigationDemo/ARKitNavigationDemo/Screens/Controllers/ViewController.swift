@@ -12,16 +12,19 @@ import ARKit
 import CoreLocation
 import MapKit
 
-class ViewController: UIViewController, MessagePresenting, Controller {
+@IBDesignable class ViewController: UIViewController, MessagePresenting, Controller {
     
     var type: ControllerType = .nav
     
+    weak var delegate: NavigationViewControllerDelegate?
+    
     @IBOutlet weak var mapView: MKMapView!
+    
     @IBOutlet private var sceneView: ARSCNView!
     
     private var locationUpdates: Int = 0 {
         didSet {
-            if locationUpdates == 8 {
+            if locationUpdates == 6 {
                 updateNodes = false
             }
         }
@@ -32,8 +35,11 @@ class ViewController: UIViewController, MessagePresenting, Controller {
     private var annotationColor = UIColor.blue
     
     private var updateNodes: Bool = true
+    
     private var anchors: [ARAnchor] = []
+    
     private var nodes: [BaseNode] = []
+    
     private var steps: [MKRouteStep] = []
     
     private var locationService = LocationService()
@@ -41,12 +47,15 @@ class ViewController: UIViewController, MessagePresenting, Controller {
     internal var annotations: [POIAnnotation] = []
     
     internal var startingLocation: CLLocation!
+    
     private var destinationLocation: CLLocationCoordinate2D!
     
     private var locations: [CLLocation] = []
     
     private var currentLegs: [[CLLocationCoordinate2D]] = []
+    
     private var updatedLocations: [CLLocation] = []
+    
     private let configuration = ARWorldTrackingConfiguration()
     
     private var done: Bool = false
@@ -60,6 +69,7 @@ class ViewController: UIViewController, MessagePresenting, Controller {
     
     @IBAction func resetButtonTapped(_ sender: Any) {
         removeAllAnnotations()
+        self.delegate?.reset()
     }
     
     func setup() {
@@ -81,6 +91,7 @@ class ViewController: UIViewController, MessagePresenting, Controller {
             let coordinates = currentLegs.flatMap { $0 }
             self.locations = coordinates.map { CLLocation(latitude: $0.latitude, longitude: $0.longitude) }
             self.annotations.append(contentsOf: annotations)
+            self.destinationLocation = locationData.destinationLocation.coordinate
         }
         done = true
     }
@@ -100,45 +111,50 @@ class ViewController: UIViewController, MessagePresenting, Controller {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print(updatedLocations.count)
         if updatedLocations.count > 0 {
             startingLocation = CLLocation.bestLocationEstimate(locations: updatedLocations)
             if (startingLocation != nil && mapView.annotations.count == 0) && done == true {
                 DispatchQueue.main.async {
-                    self.showPointsOfInterestInMap(currentLegs: self.currentLegs)
+                    
                     self.centerMapInInitialCoordinates()
                     self.addAnnotations()
                     self.addAnchors(steps: self.steps)
+                    self.showPointsOfInterestInMap(currentLegs: self.currentLegs)
                 }
             }
         }
     }
     
     private func showPointsOfInterestInMap(currentLegs: [[CLLocationCoordinate2D]]) {
-        // mapView.removeAnnotations(mapView.annotations)
         for leg in currentLegs {
             for item in leg {
-                let poi = POIAnnotation(point: PointOfInterest(name: String(describing: item), coordinate: item))
-                mapView.addAnnotation(poi)
+                DispatchQueue.main.async {
+                    let poi = POIAnnotation(point: PointOfInterest(name: String(describing: item), coordinate: item))
+                    self.mapView.addAnnotation(poi)
+                }
             }
         }
     }
     
     private func addAnnotations() {
         annotations.forEach { annotation in
+            print(annotation)
+            guard let map = mapView else { return }
             DispatchQueue.main.async {
                 if let title = annotation.title, title.hasPrefix("N") {
+                    print("N -\(annotation)")
                     self.annotationColor = .green
                 } else {
                     self.annotationColor = .blue
                 }
-                self.mapView?.addAnnotation(annotation)
-                self.mapView.add(MKCircle(center: annotation.coordinate, radius: 0.2))
+                map.addAnnotation(annotation)
+                map.add(MKCircle(center: annotation.coordinate, radius: 0.2))
             }
         }
     }
     
     private func updateNodePosition() {
+        locationUpdates += 1
         if updateNodes {
             SCNTransaction.begin()
             SCNTransaction.animationDuration = 0.5
@@ -219,7 +235,6 @@ extension ViewController: ARSCNViewDelegate {
 extension ViewController: LocationServiceDelegate {
     
     func trackingLocation(for currentLocation: CLLocation) {
-        locationUpdates += 1
         if currentLocation.horizontalAccuracy <= 65.0 {
             updatedLocations.append(currentLocation)
             updateNodePosition()

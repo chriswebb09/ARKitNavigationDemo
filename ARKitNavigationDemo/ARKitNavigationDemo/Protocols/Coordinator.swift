@@ -10,9 +10,3 @@ import Foundation
 
 protocol Coordinator: class { }
 
-protocol CoordinatorDelegate: class { }
-
-enum CoordinatorType {
-    case start, app
-}
-

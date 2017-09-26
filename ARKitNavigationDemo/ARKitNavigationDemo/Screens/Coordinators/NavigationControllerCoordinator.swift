@@ -25,6 +25,7 @@ class NavigationControllerCoordinator: ControllerCoordinator {
             if let storyboard = try? UIStoryboard(.navigation) {
                 if let viewController: ViewController = try? storyboard.instantiateViewController() {
                     viewController.locationData = self.locationData
+                    viewController.delegate = self
                     rootController = viewController
                     viewController.setup()
                 }
@@ -41,4 +42,12 @@ class NavigationControllerCoordinator: ControllerCoordinator {
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
     }
+}
+
+extension NavigationControllerCoordinator: NavigationViewControllerDelegate {
+    func reset() {
+        delegate?.transitionCoordinator(type: .start)
+    }
+    
+    
 }
