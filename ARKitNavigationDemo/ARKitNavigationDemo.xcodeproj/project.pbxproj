@@ -38,7 +38,6 @@
 		A74AF0F61F6CAAA20000CD5F /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74AF0F51F6CAAA20000CD5F /* MainCoordinator.swift */; };
 		A74AF0F81F6CAAB00000CD5F /* StartControllerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74AF0F71F6CAAB00000CD5F /* StartControllerCoordinator.swift */; };
 		A74AF0FA1F6CAAC30000CD5F /* NavigationControllerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74AF0F91F6CAAC30000CD5F /* NavigationControllerCoordinator.swift */; };
-		A79518BB1F79E25B0030E21A /* bumpMap.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A79518BA1F79E25B0030E21A /* bumpMap.jpg */; };
 		A79518BE1F7A1BB10030E21A /* CircularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79518BD1F7A1BB10030E21A /* CircularButton.swift */; };
 		A79518C01F7A1E280030E21A /* ControllerCoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79518BF1F7A1E280030E21A /* ControllerCoordinatorDelegate.swift */; };
 		A79518C21F7A1E4F0030E21A /* ControllerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79518C11F7A1E4F0030E21A /* ControllerType.swift */; };
@@ -109,7 +108,6 @@
 		A74AF0F51F6CAAA20000CD5F /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		A74AF0F71F6CAAB00000CD5F /* StartControllerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartControllerCoordinator.swift; sourceTree = "<group>"; };
 		A74AF0F91F6CAAC30000CD5F /* NavigationControllerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerCoordinator.swift; sourceTree = "<group>"; };
-		A79518BA1F79E25B0030E21A /* bumpMap.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = bumpMap.jpg; path = ../../../../../Desktop/bumpMap.jpg; sourceTree = "<group>"; };
 		A79518BD1F7A1BB10030E21A /* CircularButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularButton.swift; sourceTree = "<group>"; };
 		A79518BF1F7A1E280030E21A /* ControllerCoordinatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerCoordinatorDelegate.swift; sourceTree = "<group>"; };
 		A79518C11F7A1E4F0030E21A /* ControllerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerType.swift; sourceTree = "<group>"; };
@@ -250,7 +248,6 @@
 			isa = PBXGroup;
 			children = (
 				A74AF0D41F6CA3C00000CD5F /* BaseNode.swift */,
-				A79518BA1F79E25B0030E21A /* bumpMap.jpg */,
 				A74AF0D61F6CA3D50000CD5F /* POIAnnotation.swift */,
 				A74AF0D81F6CA3EA0000CD5F /* PointOfInterest.swift */,
 				A79518C91F7A1EE60030E21A /* LocationTranslation.swift */,
@@ -431,7 +428,6 @@
 				A74AF09F1F6CA2490000CD5F /* LaunchScreen.storyboard in Resources */,
 				A74AF0F01F6CAA020000CD5F /* Start.storyboard in Resources */,
 				A74AF09C1F6CA2490000CD5F /* Assets.xcassets in Resources */,
-				A79518BB1F79E25B0030E21A /* bumpMap.jpg in Resources */,
 				A74AF09A1F6CA2490000CD5F /* Navigation.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
