@@ -10,7 +10,7 @@
 ## ARKit Demo Application
 
 
-![Example gif](https://github.com/chriswebb09/ARKitNavigationDemo/blob/master/ARKitNavigationDemo/movprev.gif)
+
 
 ![Example gif](https://github.com/chriswebb09/ARKitNavigationDemo/blob/master/ARKitNavigationDemo/test4.gif)
 
