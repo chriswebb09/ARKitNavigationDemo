@@ -15,12 +15,15 @@ class StartViewController: UIViewController, Controller {
     @IBOutlet weak var mapView: MKMapView!
     
     private var annotationColor = UIColor.blue
+    
     internal var annotations: [POIAnnotation] = []
+    
     private var currentLegs: [[CLLocationCoordinate2D]] = []
     
     weak var delegate: StartViewControllerDelegate?
     
     var locationService: LocationService = LocationService()
+    
     var navigationService: NavigationService = NavigationService()
     
     var type: ControllerType = .nav
@@ -28,6 +31,7 @@ class StartViewController: UIViewController, Controller {
     private var locations: [CLLocation] = []
     var startingLocation: CLLocation!
     var press: UILongPressGestureRecognizer!
+    
     var destinationLocation: CLLocationCoordinate2D! {
         didSet {
             self.setupNavigation()
@@ -46,20 +50,24 @@ class StartViewController: UIViewController, Controller {
         mapView.delegate = self
     }
     
+    // Sets destination location to point on map
+    
     @objc func handleMapTap(gesture: UIGestureRecognizer) {
-        print("tap")
         if gesture.state != UIGestureRecognizerState.began {
             return
         }
-        
         let touchPoint = gesture.location(in: mapView)
         let coord: CLLocationCoordinate2D = self.mapView.convert(touchPoint, toCoordinateFrom: mapView)
         destinationLocation = coord
     }
     
+    // Gets directions from from MapKit directions API, when finished calculates intermediary locations
+    
     private func setupNavigation() {
+    
         let group = DispatchGroup()
         group.enter()
+        
         DispatchQueue.global(qos: .default).async {
             
             if self.destinationLocation != nil {
@@ -77,22 +85,28 @@ class StartViewController: UIViewController, Controller {
     }
     
     private func getLocationData() {
+        
         for (index, step) in steps.enumerated() {
             setTripLegFromStep(step, and: index)
         }
+        
         for leg in currentLegs {
             update(intermediary: leg)
         }
+        
         self.centerMapInInitialCoordinates()
         self.showPointsOfInterestInMap(currentLegs: self.currentLegs)
         self.addAnnotations()
-        DispatchQueue.main.async {
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             let alertController = UIAlertController(title: "Navigate to your destination?", message: "You've selected destination.", preferredStyle: .alert)
             let cancelAction = UIAlertAction(title: "No thanks.", style: .cancel, handler: nil)
+            
             let okayAction = UIAlertAction(title: "Go!", style: .default, handler: { action in
                 let destination = CLLocation(latitude: self.destinationLocation.latitude, longitude: self.destinationLocation.longitude)
                 self.delegate?.startNavigation(with: self.annotations, for: destination, and: self.currentLegs, and: self.steps)
             })
+            
             alertController.addAction(cancelAction)
             alertController.addAction(okayAction)
             self.present(alertController, animated: true, completion: nil)
@@ -100,9 +114,13 @@ class StartViewController: UIViewController, Controller {
       
     }
     
+    // Gets coordinates between two locations at set intervals
+    
     private func setLeg(from previous: CLLocation, to next: CLLocation) -> [CLLocationCoordinate2D] {
         return CLLocationCoordinate2D.getIntermediaryLocations(currentLocation: previous, destinationLocation: next)
     }
+    
+    // Add POI dots to map
     
     private func showPointsOfInterestInMap(currentLegs: [[CLLocationCoordinate2D]]) {
         mapView.removeAnnotations(mapView.annotations)
@@ -129,6 +147,8 @@ class StartViewController: UIViewController, Controller {
         }
     }
     
+    // Calculates intermediary coordinates for route step that is not first
+    
     private func getTripLeg(for index: Int, and step: MKRouteStep) {
         let previousIndex = index - 1
         let previous = steps[previousIndex]
@@ -137,6 +157,8 @@ class StartViewController: UIViewController, Controller {
         let intermediaries = CLLocationCoordinate2D.getIntermediaryLocations(currentLocation: previousLocation, destinationLocation: nextLocation)
         currentLegs.append(intermediaries)
     }
+    
+    // Calculates intermediary coordinates for first route step
     
     private func getInitialLeg(for step: MKRouteStep) {
         let nextLocation = CLLocation(latitude: step.polyline.coordinate.latitude, longitude: step.polyline.coordinate.longitude)
