@@ -9,6 +9,8 @@
 
 ## ARKit Demo Application
 
+When it loads to the map, tap a place on the map where you want to navigate to and press okay. The tap can be sluggish, so you might have to try once or twice before you get it. When the navigation screen loads, tap the screen, then give it a few seconds. You should see the nodes render. 
+
 
 
 
