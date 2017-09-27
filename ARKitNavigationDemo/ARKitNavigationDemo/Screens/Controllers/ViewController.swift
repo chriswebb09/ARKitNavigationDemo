@@ -110,6 +110,8 @@ import MapKit
         sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
     }
     
+    // Render nodes when user touches screen 
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if updatedLocations.count > 0 {
             startingLocation = CLLocation.bestLocationEstimate(locations: updatedLocations)

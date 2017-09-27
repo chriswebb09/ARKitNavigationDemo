@@ -56,7 +56,9 @@ class StartViewController: UIViewController, Controller {
         if gesture.state != UIGestureRecognizerState.began {
             return
         }
+        // Get tap point
         let touchPoint = gesture.location(in: mapView)
+        // Convert tap point to coordinate
         let coord: CLLocationCoordinate2D = self.mapView.convert(touchPoint, toCoordinateFrom: mapView)
         destinationLocation = coord
     }
@@ -79,6 +81,7 @@ class StartViewController: UIViewController, Controller {
                     group.leave()
                 }
             }
+            // Have to wait until it is finished to move to next step
             group.wait()
             self.getLocationData()
         }
@@ -132,12 +135,16 @@ class StartViewController: UIViewController, Controller {
         }
     }
     
+    // Adds calculated distances to annotations and locations arrays
+    
     private func update(intermediary locations: [CLLocationCoordinate2D]) {
         for intermediary in locations {
             annotations.append(POIAnnotation(point: PointOfInterest(name: String(describing: intermediary), coordinate: intermediary)))
             self.locations.append(CLLocation(latitude: intermediary.latitude, longitude: intermediary.longitude))
         }
     }
+    
+    // Determines whether leg is first leg or not and routes logic accordingly
     
     private func setTripLegFromStep(_ step: MKRouteStep, and index: Int) {
         if index > 0 {
@@ -166,8 +173,11 @@ class StartViewController: UIViewController, Controller {
         currentLegs.append(intermediaries)
     }
     
+    // Prefix N is just a way to grab step annotations, could definitely get refactored
+    
     private func addAnnotations() {
         annotations.forEach { annotation in
+            // Step annotations are green, intermediary are blue
             DispatchQueue.main.async {
                 if let title = annotation.title, title.hasPrefix("N") {
                     self.annotationColor = .green
@@ -183,10 +193,14 @@ class StartViewController: UIViewController, Controller {
 
 extension StartViewController: LocationServiceDelegate, MessagePresenting, Mapable {
     
+    // Once location is tracking - zoom in and center map
+    
     func trackingLocation(for currentLocation: CLLocation) {
         startingLocation = currentLocation
         centerMapInInitialCoordinates()
     }
+    
+    // Don't fail silently
     
     func trackingLocationDidFail(with error: Error) {
         presentMessage(title: "Error", message: error.localizedDescription)
