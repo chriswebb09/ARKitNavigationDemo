@@ -75,7 +75,7 @@ class StartViewController: UIViewController, Controller {
             if self.destinationLocation != nil {
                 self.navigationService.getDirections(destinationLocation: self.destinationLocation, request: MKDirectionsRequest()) { steps in
                     for step in steps {
-                        self.annotations.append(POIAnnotation(point: PointOfInterest(name: "N " + String(describing: step.instructions), coordinate: step.getLocation().coordinate)))
+                        self.annotations.append(POIAnnotation(coordinate: step.getLocation().coordinate, name: "N " + step.instructions))
                     }
                     self.steps.append(contentsOf: steps)
                     group.leave()
@@ -129,7 +129,8 @@ class StartViewController: UIViewController, Controller {
         mapView.removeAnnotations(mapView.annotations)
         for leg in currentLegs {
             for item in leg {
-                let poi = POIAnnotation(point: PointOfInterest(name: String(describing: item), coordinate: item))
+                let poi = POIAnnotation(coordinate: item, name: String(describing: item))
+                    //POIAnnotation(point: PointOfInterest(name: String(describing: item), coordinate: item))
                 mapView.addAnnotation(poi)
             }
         }
@@ -139,7 +140,7 @@ class StartViewController: UIViewController, Controller {
     
     private func update(intermediary locations: [CLLocationCoordinate2D]) {
         for intermediary in locations {
-            annotations.append(POIAnnotation(point: PointOfInterest(name: String(describing: intermediary), coordinate: intermediary)))
+            annotations.append(POIAnnotation(coordinate: intermediary, name: String(describing:intermediary)))
             self.locations.append(CLLocation(latitude: intermediary.latitude, longitude: intermediary.longitude))
         }
     }

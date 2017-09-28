@@ -16,7 +16,9 @@ extension UIStoryboard {
     
     enum Storyboard: String {
         case start, navigation
+        
         // The name of the storyboard's file, returned with capitalization applied
+        
         var filename: String {
             return rawValue.capitalized
         }
@@ -37,7 +39,6 @@ extension UIStoryboard {
 }
 
 // MARK: - Storyboard Identifiable Error
-
 
 // MARK: - View Controller
 

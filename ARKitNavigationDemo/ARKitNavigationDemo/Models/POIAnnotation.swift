@@ -10,21 +10,17 @@ import Foundation
 import MapKit
 
 class POIAnnotation: NSObject, MKAnnotation {
-    let pointOfInterest: PointOfInterest
-    var coordinate: CLLocationCoordinate2D {
-        return pointOfInterest.coordinate
-    }
     
-    var title: String? {
-        return pointOfInterest.name
-    }
+    var coordinate: CLLocationCoordinate2D
     
-    var subtitle: String? {
-        return "(\(pointOfInterest.coordinate.latitude),\(pointOfInterest.coordinate.longitude))"
-    }
+    var title: String?
     
-    init(point: PointOfInterest) {
-        pointOfInterest = point
+    var subtitle: String?
+    
+    init(coordinate: CLLocationCoordinate2D, name: String) {
+        self.coordinate = coordinate
+        self.title = name
+        self.subtitle =  "(\(coordinate.latitude),\(coordinate.longitude))"
         super.init()
     }
 }

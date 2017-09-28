@@ -72,10 +72,10 @@ import MapKit
         self.delegate?.reset()
     }
     
-    func setup() {
-        locationService.delegate = self
-        locationService.startUpdatingLocation()
-    }
+//    func setup() {
+//        locationService.delegate = self
+//        locationService.startUpdatingLocation()
+//    }
     
     private func setupLocationService() {
         mapView.delegate = self
@@ -105,12 +105,14 @@ import MapKit
         runSession()
     }
     
+    // Set session configuration with compass and gravity 
+    
     func runSession() {
         configuration.worldAlignment = .gravityAndHeading
         sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
     }
     
-    // Render nodes when user touches screen 
+    // Render nodes when user touches screen
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if updatedLocations.count > 0 {
@@ -131,7 +133,7 @@ import MapKit
         for leg in currentLegs {
             for item in leg {
                 DispatchQueue.main.async {
-                    let poi = POIAnnotation(point: PointOfInterest(name: String(describing: item), coordinate: item))
+                    let poi = POIAnnotation(coordinate: item, name: String(describing:item))
                     self.mapView.addAnnotation(poi)
                 }
             }

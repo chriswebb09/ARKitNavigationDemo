@@ -27,7 +27,6 @@ class NavigationControllerCoordinator: ControllerCoordinator {
                     viewController.locationData = self.locationData
                     viewController.delegate = self
                     rootController = viewController
-                    viewController.setup()
                 }
             }
         }
@@ -45,9 +44,8 @@ class NavigationControllerCoordinator: ControllerCoordinator {
 }
 
 extension NavigationControllerCoordinator: NavigationViewControllerDelegate {
+    
     func reset() {
         delegate?.transitionCoordinator(type: .start)
     }
-    
-    
 }
