@@ -7,6 +7,14 @@
 
 * Work in progress.
 
+**In Progress**
+
+- [ ] **Region** — For one, we could render far fewer nodes. In fact, it’s a bit distracting that the entire trip is rendered. To fix this, we could render one leg of the journey at a time. Then we could use our location service to monitor for when we enter that region, or we could calculate the distance from the point of view to the last node in the leg triggering a mechanism to render a new leg and remove the old when they are in proximity. 
+
+- [ ] **Dynamic Destination** — Another easy way we could improve it is we could allow the user to set their destination while they are navigating, instead having to go back to the map. 
+
+- [ ] **Rese**t — As the project is as of this writing, the reset functionality hasn’t been completed. Sometimes ARKit gets confused, sometimes the GPS gets confused (more on the location problems in a bit.) So we can build a mechanism which resets the screen so we can start over. That way you don’t have to quit to reset the trip.
+
 ## ARKit Demo Application
 
 When it loads to the map, tap a place on the map where you want to navigate to and press okay. The tap can be sluggish, so you might have to try once or twice before you get it. When the navigation screen loads, tap the screen, then give it a few seconds. You should see the nodes render. 
