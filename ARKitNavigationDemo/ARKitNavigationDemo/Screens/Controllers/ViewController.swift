@@ -78,7 +78,7 @@ class ViewController: UIViewController, MessagePresenting, Controller {
     private func setupLocationService() {
         locationService = LocationService()
         locationService.delegate = self
-        locationService.startUpdatingLocation()
+        //locationService.startUpdatingLocation()
     }
     
     private func setupNavigation() {
@@ -184,7 +184,7 @@ class ViewController: UIViewController, MessagePresenting, Controller {
                     
                     let translation = MatrixHelper.transformMatrix(for: matrix_identity_float4x4, originLocation: startingLocation, location: baseNode.location)
                     
-                    let position = positionFromTransform(translation)
+                    let position = SCNVector3.positionFromTransform(translation)
                     let distance = baseNode.location.distance(from: startingLocation)
                     
                     DispatchQueue.main.async {
@@ -323,10 +323,7 @@ extension ViewController:  Mapable {
     
     // Get the position of a node in sceneView for matrix transformation
     
-    private func positionFromTransform(_ transform: matrix_float4x4) -> SCNVector3 {
-        return SCNVector3Make(transform.columns.3.x, transform.columns.3.y, transform.columns.3.z)
-    }
-    
+  
     private func addAnchors(steps: [MKRouteStep]) {
         guard startingLocation != nil && steps.count > 0 else { return }
         

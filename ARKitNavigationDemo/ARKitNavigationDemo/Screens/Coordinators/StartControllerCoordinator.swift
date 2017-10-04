@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class StartControllerCoordinator: ControllerCoordinator {
+final class StartControllerCoordinator: ControllerCoordinator {
     
     var window: UIWindow
     

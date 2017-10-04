@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NavigationControllerCoordinator: ControllerCoordinator {
+final class NavigationControllerCoordinator: ControllerCoordinator {
     
     var window: UIWindow
     var rootController: RootController!

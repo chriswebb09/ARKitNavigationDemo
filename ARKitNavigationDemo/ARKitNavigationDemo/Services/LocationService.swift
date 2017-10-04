@@ -9,7 +9,7 @@
 import Foundation
 import CoreLocation
 
-class LocationService: NSObject, CLLocationManagerDelegate {
+final class LocationService: NSObject, CLLocationManagerDelegate {
     
     var locationManager: CLLocationManager?
     var lastLocation: CLLocation?
@@ -24,21 +24,34 @@ class LocationService: NSObject, CLLocationManagerDelegate {
         
         locationManager = CLLocationManager()
         guard let locationManager = locationManager else { return }
-       
-        switch(CLLocationManager.authorizationStatus()) {
-        case .authorizedAlways, .authorizedWhenInUse:
-            locationManager.startUpdatingLocation()
-            locationManager.startUpdatingHeading()
-            lastLocation = locationManager.location
-        case .notDetermined, .restricted, .denied:
-              locationManager.requestWhenInUseAuthorization()
-        }
+        
+        
+        requestAuthorization(locationManager: locationManager)
+        
+//        switch(CLLocationManager.authorizationStatus()) {
+//        case .authorizedAlways, .authorizedWhenInUse:
+//            startUpdatingLocation(locationManager: locationManager)
+//            lastLocation = locationManager.location
+//        case .notDetermined, .restricted, .denied:
+//            stopUpdatingLocation(locationManager: locationManager)
+//            locationManager.requestWhenInUseAuthorization()
+//        }
         
         locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.headingFilter = kCLHeadingFilterNone
         locationManager.pausesLocationUpdatesAutomatically = false
         locationManager.delegate = self
+    }
+    
+    func requestAuthorization(locationManager: CLLocationManager) {
+        locationManager.requestWhenInUseAuthorization()
+        switch(CLLocationManager.authorizationStatus()) {
+        case .authorizedAlways, .authorizedWhenInUse:
+            startUpdatingLocation(locationManager: locationManager)
+        case .denied, .notDetermined, .restricted:
+            stopUpdatingLocation(locationManager: locationManager)
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
@@ -49,14 +62,14 @@ class LocationService: NSObject, CLLocationManagerDelegate {
         NotificationCenter.default.post(name: Notification.Name(rawValue:"myNotificationName"), object: self, userInfo: nil)
     }
     
-  //  locationManager.startUpdatingHeading()
-    //and that it stops tracking when appropriate locationManager.stopUpdatingHeading()
-    func startUpdatingLocation() {
-        locationManager?.startUpdatingLocation()
+    func startUpdatingLocation(locationManager: CLLocationManager) {
+        locationManager.startUpdatingLocation()
+        locationManager.startUpdatingHeading()
     }
     
-    func stopUpdatingLocation() {
-        locationManager?.stopUpdatingLocation()
+    func stopUpdatingLocation(locationManager: CLLocationManager) {
+        locationManager.stopUpdatingLocation()
+        locationManager.stopUpdatingHeading()
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

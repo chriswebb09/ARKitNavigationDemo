@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class MainCoordinator: AppCoordinator {
+final class MainCoordinator: AppCoordinator {
     
     weak var delegate: ControllerCoordinatorDelegate?
     

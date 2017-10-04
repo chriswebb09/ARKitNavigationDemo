@@ -11,7 +11,7 @@ import MapKit
 import CoreLocation
 import ARKit
 
-class StartViewController: UIViewController, Controller {
+final class StartViewController: UIViewController, Controller {
     
     @IBOutlet weak var mapView: MKMapView!
     
@@ -37,7 +37,7 @@ class StartViewController: UIViewController, Controller {
     
     var destinationLocation: CLLocationCoordinate2D! {
         didSet {
-            self.setupNavigation()
+            setupNavigation()
         }
     }
     
@@ -47,7 +47,8 @@ class StartViewController: UIViewController, Controller {
         super.viewDidLoad()
         if ARConfiguration.isSupported {
             locationService.delegate = self
-            locationService.startUpdatingLocation()
+            guard let locationManager = locationService.locationManager else { return }
+            locationService.startUpdatingLocation(locationManager: locationManager)
             press = UILongPressGestureRecognizer(target: self, action: #selector(handleMapTap(gesture:)))
             press.minimumPressDuration = 0.35
             mapView.addGestureRecognizer(press)
@@ -64,11 +65,11 @@ class StartViewController: UIViewController, Controller {
         if gesture.state != UIGestureRecognizerState.began {
             return
         }
-        // Get tap point
+        // Get tap point on map
         let touchPoint = gesture.location(in: mapView)
         
-        // Convert tap point to coordinate
-        let coord: CLLocationCoordinate2D = self.mapView.convert(touchPoint, toCoordinateFrom: mapView)
+        // Convert map tap point to coordinate
+        let coord: CLLocationCoordinate2D = mapView.convert(touchPoint, toCoordinateFrom: mapView)
         
         destinationLocation = coord
     }
@@ -92,7 +93,7 @@ class StartViewController: UIViewController, Controller {
                 }
             }
             
-            // Have to wait until it is finished to move to next step
+            // All steps must be added before moving to next step
             group.wait()
             
             self.getLocationData()
@@ -115,6 +116,7 @@ class StartViewController: UIViewController, Controller {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             let alertController = UIAlertController(title: "Navigate to your destination?", message: "You've selected destination.", preferredStyle: .alert)
+            
             let cancelAction = UIAlertAction(title: "No thanks.", style: .cancel, handler: { action in
                 DispatchQueue.main.async {
                     self.destinationLocation = nil
@@ -150,8 +152,8 @@ class StartViewController: UIViewController, Controller {
     private func showPointsOfInterestInMap(currentTripLegs: [[CLLocationCoordinate2D]]) {
         mapView.removeAnnotations(mapView.annotations)
         for tripLeg in currentTripLegs {
-            for coodinate in tripLeg {
-                let poi = POIAnnotation(coordinate: coodinate, name: String(describing: coodinate))
+            for coordinate in tripLeg {
+                let poi = POIAnnotation(coordinate: coordinate, name: String(describing: coordinate))
                 mapView.addAnnotation(poi)
             }
         }
@@ -198,10 +200,10 @@ class StartViewController: UIViewController, Controller {
     // Prefix N is just a way to grab step annotations, could definitely get refactored
     
     private func addMapAnnotations() {
+        
         annotations.forEach { annotation in
             
             // Step annotations are green, intermediary are blue
-            
             DispatchQueue.main.async {
                 if let title = annotation.title, title.hasPrefix("N") {
                     self.annotationColor = .green
@@ -249,12 +251,5 @@ extension StartViewController: MKMapViewDelegate {
             return renderer
         }
         return MKOverlayRenderer()
-    }
-    
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        let alertController = UIAlertController(title: "Welcome to \(String(describing: title))", message: "You've selected \(String(describing: title))", preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alertController.addAction(cancelAction)
-        present(alertController, animated: true, completion: nil)
     }
 }
