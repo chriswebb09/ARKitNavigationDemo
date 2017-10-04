@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import ARKit
 
 class StartViewController: UIViewController, Controller {
     
@@ -44,12 +45,17 @@ class StartViewController: UIViewController, Controller {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        locationService.delegate = self
-        locationService.startUpdatingLocation()
-        press = UILongPressGestureRecognizer(target: self, action: #selector(handleMapTap(gesture:)))
-        press.minimumPressDuration = 0.35
-        mapView.addGestureRecognizer(press)
-        mapView.delegate = self
+        if ARConfiguration.isSupported {
+            locationService.delegate = self
+            locationService.startUpdatingLocation()
+            press = UILongPressGestureRecognizer(target: self, action: #selector(handleMapTap(gesture:)))
+            press.minimumPressDuration = 0.35
+            mapView.addGestureRecognizer(press)
+            mapView.delegate = self
+        } else {
+            presentMessage(title: "Not Compatible", message: "ARKit is not compatible with this phone.")
+            return
+        }
     }
     
     // Sets destination location to point on map
