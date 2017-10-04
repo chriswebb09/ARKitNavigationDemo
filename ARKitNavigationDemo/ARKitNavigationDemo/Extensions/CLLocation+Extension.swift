@@ -11,6 +11,7 @@ import GLKit
 import SceneKit
 
 func -(left: CLLocationCoordinate2D, right: CLLocationCoordinate2D) -> CLLocationDistance {
+    
     let leftLatRadian = left.latitude.toRadians()
     let leftLonRadian = left.longitude.toRadians()
     

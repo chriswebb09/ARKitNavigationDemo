@@ -16,6 +16,7 @@ class LocationService: NSObject, CLLocationManagerDelegate {
     var delegate: LocationServiceDelegate?
     var currentLocation: CLLocation?
     var initial: Bool = true
+    var userHeading: CLLocationDirection!
     var locations: [CLLocation] = []
     
     override init() {
@@ -23,13 +24,14 @@ class LocationService: NSObject, CLLocationManagerDelegate {
         
         locationManager = CLLocationManager()
         guard let locationManager = locationManager else { return }
+       
         switch(CLLocationManager.authorizationStatus()) {
         case .authorizedAlways, .authorizedWhenInUse:
             locationManager.startUpdatingLocation()
             locationManager.startUpdatingHeading()
             lastLocation = locationManager.location
         case .notDetermined, .restricted, .denied:
-             startUpdatingLocation()
+              locationManager.requestWhenInUseAuthorization()
         }
         
         locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
@@ -39,6 +41,16 @@ class LocationService: NSObject, CLLocationManagerDelegate {
         locationManager.delegate = self
     }
     
+    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+        if newHeading.headingAccuracy < 0 { return }
+        
+        let heading = newHeading.trueHeading > 0 ? newHeading.trueHeading : newHeading.magneticHeading
+        userHeading = heading
+        NotificationCenter.default.post(name: Notification.Name(rawValue:"myNotificationName"), object: self, userInfo: nil)
+    }
+    
+  //  locationManager.startUpdatingHeading()
+    //and that it stops tracking when appropriate locationManager.stopUpdatingHeading()
     func startUpdatingLocation() {
         locationManager?.startUpdatingLocation()
     }

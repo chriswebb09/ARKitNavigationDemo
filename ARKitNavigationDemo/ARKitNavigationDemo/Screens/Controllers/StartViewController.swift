@@ -47,7 +47,7 @@ class StartViewController: UIViewController, Controller {
         locationService.delegate = self
         locationService.startUpdatingLocation()
         press = UILongPressGestureRecognizer(target: self, action: #selector(handleMapTap(gesture:)))
-        press.minimumPressDuration = 0.5
+        press.minimumPressDuration = 0.35
         mapView.addGestureRecognizer(press)
         mapView.delegate = self
     }
@@ -183,7 +183,9 @@ class StartViewController: UIViewController, Controller {
     
     private func addMapAnnotations() {
         annotations.forEach { annotation in
+            
             // Step annotations are green, intermediary are blue
+            
             DispatchQueue.main.async {
                 if let title = annotation.title, title.hasPrefix("N") {
                     self.annotationColor = .green
@@ -216,13 +218,10 @@ extension StartViewController: LocationServiceDelegate, MessagePresenting, Mapab
 extension StartViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        if annotation is MKUserLocation { return nil }
-        else {
-            let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "annotationView") ?? MKAnnotationView()
-            annotationView.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-            annotationView.canShowCallout = true
-            return annotationView
-        }
+        let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "annotationView") ?? MKAnnotationView()
+        annotationView.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+        annotationView.canShowCallout = true
+        return annotationView
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {

@@ -220,14 +220,9 @@
 			children = (
 				A74AF0D21F6CA3AF0000CD5F /* MessagePresenting.swift */,
 				A74AF0CE1F6CA3850000CD5F /* StoryboardIdentifiable.swift */,
-				A74AF0D01F6CA3990000CD5F /* ControllerCoordinator.swift */,
 				A79518C31F7A1E640030E21A /* Controller.swift */,
 				A79518C11F7A1E4F0030E21A /* ControllerType.swift */,
-				A79518BF1F7A1E280030E21A /* ControllerCoordinatorDelegate.swift */,
-				A74AF0CA1F6CA35D0000CD5F /* Coordinator.swift */,
-				A79518C71F7A1E950030E21A /* CoordinatorDelegate.swift */,
-				A79518C51F7A1E810030E21A /* CoordinatorType.swift */,
-				A74AF0CC1F6CA3710000CD5F /* AppCoordinator.swift */,
+				A75539011F8550C0006463EF /* CoordinatorProtocols */,
 				A74AF0C81F6CA34A0000CD5F /* Mapable.swift */,
 			);
 			path = Protocols;
@@ -300,6 +295,19 @@
 				A74AF0F91F6CAAC30000CD5F /* NavigationControllerCoordinator.swift */,
 			);
 			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		A75539011F8550C0006463EF /* CoordinatorProtocols */ = {
+			isa = PBXGroup;
+			children = (
+				A74AF0D01F6CA3990000CD5F /* ControllerCoordinator.swift */,
+				A79518BF1F7A1E280030E21A /* ControllerCoordinatorDelegate.swift */,
+				A74AF0CA1F6CA35D0000CD5F /* Coordinator.swift */,
+				A79518C71F7A1E950030E21A /* CoordinatorDelegate.swift */,
+				A79518C51F7A1E810030E21A /* CoordinatorType.swift */,
+				A74AF0CC1F6CA3710000CD5F /* AppCoordinator.swift */,
+			);
+			path = CoordinatorProtocols;
 			sourceTree = "<group>";
 		};
 		A7746D381F6CF03A00B0B0B9 /* Controllers */ = {
