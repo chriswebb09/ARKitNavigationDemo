@@ -115,7 +115,17 @@ class StartViewController: UIViewController, Controller {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             let alertController = UIAlertController(title: "Navigate to your destination?", message: "You've selected destination.", preferredStyle: .alert)
-            let cancelAction = UIAlertAction(title: "No thanks.", style: .cancel, handler: nil)
+            let cancelAction = UIAlertAction(title: "No thanks.", style: .cancel, handler: { action in
+                DispatchQueue.main.async {
+                    self.destinationLocation = nil
+                    self.annotations.removeAll()
+                    self.locations.removeAll()
+                    self.currentTripLegs.removeAll()
+                    self.steps.removeAll()
+                    self.mapView.removeAnnotations(self.mapView.annotations)
+                    self.mapView.removeOverlays(self.mapView.overlays)
+                }
+            })
             
             let okayAction = UIAlertAction(title: "Go!", style: .default, handler: { action in
                 let destination = CLLocation(latitude: self.destinationLocation.latitude, longitude: self.destinationLocation.longitude)
