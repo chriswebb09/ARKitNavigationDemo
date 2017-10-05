@@ -13,14 +13,23 @@ import CoreLocation
 import MapKit
 
 class ViewController: UIViewController {
-    
     var type: ControllerType = .nav
-    
     weak var delegate: NavigationViewControllerDelegate?
-    
-    @IBOutlet weak var mapView: MKMapView!
-    
-    @IBOutlet private var sceneView: ARSCNView!
+    var locationData: LocationData!
+    private var annotationColor = UIColor.blue
+    private var updateNodes: Bool = false
+    private var anchors: [ARAnchor] = []
+    private var nodes: [BaseNode] = []
+    private var steps: [MKRouteStep] = []
+    private var locationService = LocationService()
+    internal var annotations: [POIAnnotation] = []
+    internal var startingLocation: CLLocation!
+    private var destinationLocation: CLLocationCoordinate2D!
+    private var locations: [CLLocation] = []
+    private var currentLegs: [[CLLocationCoordinate2D]] = []
+    private var updatedLocations: [CLLocation] = []
+    private let configuration = ARWorldTrackingConfiguration()
+    private var done: Bool = false
     
     private var locationUpdates: Int = 0 {
         didSet {
@@ -30,37 +39,8 @@ class ViewController: UIViewController {
         }
     }
     
-    var locationData: LocationData!
-    
-    private var annotationColor = UIColor.blue
-    
-    private var updateNodes: Bool = false
-    
-    private var anchors: [ARAnchor] = []
-    
-    private var nodes: [BaseNode] = []
-    
-    private var steps: [MKRouteStep] = []
-    
-    private var locationService = LocationService()
-    
-    internal var annotations: [POIAnnotation] = []
-    
-    internal var startingLocation: CLLocation!
-    
-    private var destinationLocation: CLLocationCoordinate2D!
-    
-    private var locations: [CLLocation] = []
-    
-    private var currentLegs: [[CLLocationCoordinate2D]] = []
-    
-    private var updatedLocations: [CLLocation] = []
-    
-    private let configuration = ARWorldTrackingConfiguration()
-    
-    private var done: Bool = false
-    
-    var headingImageView: UIImageView?
+    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet private var sceneView: ARSCNView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,14 +54,12 @@ class ViewController: UIViewController {
 extension ViewController: Controller {
     
     @IBAction func resetButtonTapped(_ sender: Any) {
-        //removeAllAnnotations()
         delegate?.reset()
     }
     
     private func setupLocationService() {
         locationService = LocationService()
         locationService.delegate = self
-        //locationService.startUpdatingLocation()
     }
     
     private func setupNavigation() {
@@ -108,16 +86,6 @@ extension ViewController: Controller {
 
 extension ViewController: MessagePresenting {
     
-    func updateHeadingRotation() {
-        if let heading = locationService.userHeading,
-            let headingImageView = headingImageView {
-            
-            headingImageView.isHidden = false
-            let rotation = CGFloat(heading / 180 * Double.pi)
-            headingImageView.transform = CGAffineTransform(rotationAngle: rotation)
-        }
-    }
-    
     // Set session configuration with compass and gravity 
     
     func runSession() {
@@ -130,16 +98,13 @@ extension ViewController: MessagePresenting {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         updateNodes = true
         if updatedLocations.count > 0 {
-            
             startingLocation = CLLocation.bestLocationEstimate(locations: updatedLocations)
             if (startingLocation != nil && mapView.annotations.count == 0) && done == true {
-                
                 DispatchQueue.main.async {
                     self.centerMapInInitialCoordinates()
                     self.showPointsOfInterestInMap(currentLegs: self.currentLegs)
                     self.addAnnotations()
                     self.addAnchors(steps: self.steps)
-                    
                 }
             }
         }
@@ -148,28 +113,22 @@ extension ViewController: MessagePresenting {
     private func showPointsOfInterestInMap(currentLegs: [[CLLocationCoordinate2D]]) {
         for leg in currentLegs {
             for item in leg {
-                
                 let poi = POIAnnotation(coordinate: item, name: String(describing:item))
                 self.annotations.append(poi)
                 self.mapView.addAnnotation(poi)
-                
             }
         }
     }
     
     private func addAnnotations() {
         annotations.forEach { annotation in
-            
             guard let map = mapView else { return }
-            
             DispatchQueue.main.async {
                 if let title = annotation.title, title.hasPrefix("N") {
-                    
                     self.annotationColor = .green
                 } else {
                     self.annotationColor = .blue
                 }
-                
                 map.addAnnotation(annotation)
                 map.add(MKCircle(center: annotation.coordinate, radius: 0.2))
             }
@@ -177,29 +136,21 @@ extension ViewController: MessagePresenting {
     }
     
     private func updateNodePosition() {
-        
         if updateNodes {
             locationUpdates += 1
-            
             SCNTransaction.begin()
             SCNTransaction.animationDuration = 0.5
-            
             if updatedLocations.count > 0 {
                 startingLocation = CLLocation.bestLocationEstimate(locations: updatedLocations)
                 for baseNode in nodes {
-                    
                     let translation = MatrixHelper.transformMatrix(for: matrix_identity_float4x4, originLocation: startingLocation, location: baseNode.location)
-                    
                     let position = SCNVector3.positionFromTransform(translation)
                     let distance = baseNode.location.distance(from: startingLocation)
-                    
                     DispatchQueue.main.async {
-                        
                         let scale = 100 / Float(distance)
                         baseNode.scale = SCNVector3(x: scale, y: scale, z: scale)
                         baseNode.anchor = ARAnchor(transform: translation)
                         baseNode.position = position
-                        
                     }
                 }
             }
@@ -211,20 +162,15 @@ extension ViewController: MessagePresenting {
     
     private func addSphere(for step: MKRouteStep) {
         let stepLocation = step.getLocation()
-        
         let locationTransform = MatrixHelper.transformMatrix(for: matrix_identity_float4x4, originLocation: startingLocation, location: stepLocation)
         let stepAnchor = ARAnchor(transform: locationTransform)
         let sphere = BaseNode(title: step.instructions, location: stepLocation)
-        
         anchors.append(stepAnchor)
-        
         sphere.addNode(with: 0.3, and: .green, and: step.instructions)
         sphere.location = stepLocation
         sphere.anchor = stepAnchor
-        
         sceneView.session.add(anchor: stepAnchor)
         sceneView.scene.rootNode.addChildNode(sphere)
-        
         nodes.append(sphere)
     }
     
@@ -232,9 +178,7 @@ extension ViewController: MessagePresenting {
     
     private func addSphere(for location: CLLocation) {
         let locationTransform = MatrixHelper.transformMatrix(for: matrix_identity_float4x4, originLocation: startingLocation, location: location)
-        
         let stepAnchor = ARAnchor(transform: locationTransform)
-        
         let sphere = BaseNode(title: "Title", location: location)
         sphere.addSphere(with: 0.25, and: .blue)
         anchors.append(stepAnchor)
@@ -317,13 +261,7 @@ extension ViewController:  Mapable {
     
     private func addAnchors(steps: [MKRouteStep]) {
         guard startingLocation != nil && steps.count > 0 else { return }
-        
-        for step in steps {
-            addSphere(for: step)
-        }
-        
-        for location in locations {
-            addSphere(for: location)
-        }
+        for step in steps { addSphere(for: step) }
+        for location in locations { addSphere(for: location) }
     }
 }

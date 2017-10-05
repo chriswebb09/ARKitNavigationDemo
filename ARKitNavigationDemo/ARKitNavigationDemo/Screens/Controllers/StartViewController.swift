@@ -12,37 +12,23 @@ import CoreLocation
 import ARKit
 
 final class StartViewController: UIViewController, Controller {
-    
     @IBOutlet weak var mapView: MKMapView!
-    
     private var annotationColor = UIColor.blue
-    
     internal var annotations: [POIAnnotation] = []
-    
     private var currentTripLegs: [[CLLocationCoordinate2D]] = []
-    
     weak var delegate: StartViewControllerDelegate?
-    
     var locationService: LocationService = LocationService()
-    
     var navigationService: NavigationService = NavigationService()
-    
     var type: ControllerType = .nav
-    
     private var locations: [CLLocation] = []
-    
     var startingLocation: CLLocation!
-    
     var press: UILongPressGestureRecognizer!
-    
+    private var steps: [MKRouteStep] = []
     var destinationLocation: CLLocationCoordinate2D! {
         didSet {
             setupNavigation()
         }
     }
-    
-    private var steps: [MKRouteStep] = []
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         if ARConfiguration.isSupported {
