@@ -12,7 +12,7 @@ import ARKit
 import CoreLocation
 import MapKit
 
-class ViewController: UIViewController, MessagePresenting, Controller {
+class ViewController: UIViewController {
     
     var type: ControllerType = .nav
     
@@ -69,9 +69,12 @@ class ViewController: UIViewController, MessagePresenting, Controller {
         setupLocationService()
         setupNavigation()
     }
+}
+
+extension ViewController: Controller {
     
     @IBAction func resetButtonTapped(_ sender: Any) {
-        removeAllAnnotations()
+        //removeAllAnnotations()
         delegate?.reset()
     }
     
@@ -101,6 +104,9 @@ class ViewController: UIViewController, MessagePresenting, Controller {
         navigationController?.setNavigationBarHidden(true, animated: false)
         runSession()
     }
+}
+
+extension ViewController: MessagePresenting {
     
     func updateHeadingRotation() {
         if let heading = locationService.userHeading,
@@ -153,12 +159,12 @@ class ViewController: UIViewController, MessagePresenting, Controller {
     
     private func addAnnotations() {
         annotations.forEach { annotation in
-          
+            
             guard let map = mapView else { return }
             
             DispatchQueue.main.async {
                 if let title = annotation.title, title.hasPrefix("N") {
-                  
+                    
                     self.annotationColor = .green
                 } else {
                     self.annotationColor = .blue
@@ -309,21 +315,6 @@ extension ViewController: MKMapViewDelegate {
 
 extension ViewController:  Mapable {
     
-    private func removeAllAnnotations() {
-        
-        for anchor in anchors {
-            sceneView.session.remove(anchor: anchor)
-        }
-        
-        DispatchQueue.main.async {
-            self.nodes.removeAll()
-            self.anchors.removeAll()
-        }
-    }
-    
-    // Get the position of a node in sceneView for matrix transformation
-    
-  
     private func addAnchors(steps: [MKRouteStep]) {
         guard startingLocation != nil && steps.count > 0 else { return }
         

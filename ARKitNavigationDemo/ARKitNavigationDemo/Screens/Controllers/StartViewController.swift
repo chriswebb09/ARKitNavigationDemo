@@ -60,7 +60,6 @@ final class StartViewController: UIViewController, Controller {
     }
     
     // Sets destination location to point on map
-    
     @objc func handleMapTap(gesture: UIGestureRecognizer) {
         if gesture.state != UIGestureRecognizerState.began {
             return
@@ -142,13 +141,11 @@ final class StartViewController: UIViewController, Controller {
     }
     
     // Gets coordinates between two locations at set intervals
-    
     private func setLeg(from previous: CLLocation, to next: CLLocation) -> [CLLocationCoordinate2D] {
         return CLLocationCoordinate2D.getIntermediaryLocations(currentLocation: previous, destinationLocation: next)
     }
     
     // Add POI dots to map
-    
     private func showPointsOfInterestInMap(currentTripLegs: [[CLLocationCoordinate2D]]) {
         mapView.removeAnnotations(mapView.annotations)
         for tripLeg in currentTripLegs {
@@ -160,7 +157,6 @@ final class StartViewController: UIViewController, Controller {
     }
     
     // Adds calculated distances to annotations and locations arrays
-    
     private func update(intermediary locations: [CLLocationCoordinate2D]) {
         for intermediaryLocation in locations {
             annotations.append(POIAnnotation(coordinate: intermediaryLocation, name: String(describing:intermediaryLocation)))
@@ -169,7 +165,6 @@ final class StartViewController: UIViewController, Controller {
     }
     
     // Determines whether leg is first leg or not and routes logic accordingly
-    
     private func setTripLegFromStep(_ tripStep: MKRouteStep, and index: Int) {
         if index > 0 {
             getTripLeg(for: index, and: tripStep)
@@ -179,7 +174,6 @@ final class StartViewController: UIViewController, Controller {
     }
     
     // Calculates intermediary coordinates for route step that is not first
-    
     private func getTripLeg(for index: Int, and tripStep: MKRouteStep) {
         let previousIndex = index - 1
         let previousStep = steps[previousIndex]
@@ -190,7 +184,6 @@ final class StartViewController: UIViewController, Controller {
     }
     
     // Calculates intermediary coordinates for first route step
-    
     private func getInitialLeg(for tripStep: MKRouteStep) {
         let nextLocation = CLLocation(latitude: tripStep.polyline.coordinate.latitude, longitude: tripStep.polyline.coordinate.longitude)
         let intermediaries = CLLocationCoordinate2D.getIntermediaryLocations(currentLocation: startingLocation, destinationLocation: nextLocation)
@@ -198,7 +191,6 @@ final class StartViewController: UIViewController, Controller {
     }
     
     // Prefix N is just a way to grab step annotations, could definitely get refactored
-    
     private func addMapAnnotations() {
         
         annotations.forEach { annotation in
@@ -220,14 +212,12 @@ final class StartViewController: UIViewController, Controller {
 extension StartViewController: LocationServiceDelegate, MessagePresenting, Mapable {
     
     // Once location is tracking - zoom in and center map
-    
     func trackingLocation(for currentLocation: CLLocation) {
         startingLocation = currentLocation
         centerMapInInitialCoordinates()
     }
     
     // Don't fail silently
-    
     func trackingLocationDidFail(with error: Error) {
         presentMessage(title: "Error", message: error.localizedDescription)
     }
