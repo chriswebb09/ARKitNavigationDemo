@@ -35,7 +35,7 @@ When it loads to the map, tap a place on the map where you want to navigate to a
 [ARKit and CoreLocation: Part Three](https://medium.com/journey-of-one-thousand-apps/arkit-and-corelocation-part-three-98b1d51e2eac)
 
 
-Related Projects: 
+# Related Projects: 
 
 [ARKit Airport - Navigation In Augmented Reality: Part One](https://medium.com/@chris.webb5249/arkit-airport-navigation-in-augmented-reality-part-one-c99d2ad326c0)
 
