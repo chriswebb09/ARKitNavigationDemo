@@ -20,7 +20,7 @@ final class MainCoordinator: AppCoordinator {
     
     init(window: UIWindow) {
         self.window = window
-        transitionCoordinator(type: .start)
+        transitionCoordinator(type: .test)
     }
     
     func addChildCoordinator(_ childCoordinator: ControllerCoordinator) {
@@ -64,6 +64,11 @@ extension MainCoordinator: ControllerCoordinatorDelegate {
             startCoordinator.delegate = self 
             startCoordinator.type = .start
             startCoordinator.start()
+        case .test:
+            let testStoryBoard: UIStoryboard = UIStoryboard(name: "test", bundle: nil)
+            let testVC = testStoryBoard.instantiateViewController(withIdentifier: "testID") as! TEstCoordinatorViewController
+
+            break;
         }
     }
 }

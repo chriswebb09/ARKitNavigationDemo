@@ -33,7 +33,7 @@ final class StartViewController: UIViewController, Controller {
         super.viewDidLoad()
         SchipholWhenToBeService.checkWhentoBeAtSChiphol(flightNumber: "")
 
-        SchipholWhenToBeService.parseRout()
+        WayFindingSchipholService.parseRout()
         if ARConfiguration.isSupported {
             locationService.delegate = self
             guard let locationManager = locationService.locationManager else { return }
