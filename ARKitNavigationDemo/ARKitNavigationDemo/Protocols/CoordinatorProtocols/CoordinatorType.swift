@@ -9,5 +9,5 @@
 import Foundation
 
 enum CoordinatorType {
-    case start, app
+    case start, app, test
 }

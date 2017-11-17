@@ -1,0 +1,6 @@
+framework module Pods_ARKitNavigationDemoTests {
+  umbrella header "Pods-ARKitNavigationDemoTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
