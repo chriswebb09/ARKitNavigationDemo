@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13E985191F75E400234F54E9 /* Pods_ARKitNavigationDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCE8CE1E4967831072D65168 /* Pods_ARKitNavigationDemoUITests.framework */; };
 		A74AF0931F6CA2480000CD5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74AF0921F6CA2480000CD5F /* AppDelegate.swift */; };
 		A74AF0951F6CA2490000CD5F /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = A74AF0941F6CA2490000CD5F /* art.scnassets */; };
 		A74AF0971F6CA2490000CD5F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74AF0961F6CA2490000CD5F /* ViewController.swift */; };
@@ -50,6 +51,8 @@
 		A79518D41F7A1FF90030E21A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79518D31F7A1FF90030E21A /* Constants.swift */; };
 		A79518D61F7A24270030E21A /* ApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79518D51F7A24270030E21A /* ApplicationService.swift */; };
 		A7B30E7B1F79D9C600BDA025 /* StartViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B30E7A1F79D9C600BDA025 /* StartViewControllerDelegate.swift */; };
+		C08EAB87926265BB2DBE66D1 /* Pods_ARKitNavigationDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B958384835A9EDD217B56BD /* Pods_ARKitNavigationDemo.framework */; };
+		EE3F26E47366B7045EDE3F19 /* Pods_ARKitNavigationDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3EC06084F55525DD2250241 /* Pods_ARKitNavigationDemoTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +73,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3A5EF87A3C32FCC705382FB4 /* Pods-ARKitNavigationDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARKitNavigationDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ARKitNavigationDemo/Pods-ARKitNavigationDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		67259A541377AFD35662A0F3 /* Pods-ARKitNavigationDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARKitNavigationDemoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ARKitNavigationDemoTests/Pods-ARKitNavigationDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
+		68F16995846093397F3ECC1F /* Pods-ARKitNavigationDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARKitNavigationDemoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ARKitNavigationDemoUITests/Pods-ARKitNavigationDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
+		69F4AFC274CCF005899D3CF5 /* Pods-ARKitNavigationDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARKitNavigationDemoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ARKitNavigationDemoUITests/Pods-ARKitNavigationDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		9B958384835A9EDD217B56BD /* Pods_ARKitNavigationDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARKitNavigationDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A74AF08F1F6CA2480000CD5F /* ARKitNavigationDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARKitNavigationDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A74AF0921F6CA2480000CD5F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A74AF0941F6CA2490000CD5F /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -119,6 +127,10 @@
 		A79518D31F7A1FF90030E21A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A79518D51F7A24270030E21A /* ApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationService.swift; sourceTree = "<group>"; };
 		A7B30E7A1F79D9C600BDA025 /* StartViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewControllerDelegate.swift; sourceTree = "<group>"; };
+		B66D556DF96B0AF3B6B0F936 /* Pods-ARKitNavigationDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARKitNavigationDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-ARKitNavigationDemo/Pods-ARKitNavigationDemo.release.xcconfig"; sourceTree = "<group>"; };
+		E3EC06084F55525DD2250241 /* Pods_ARKitNavigationDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARKitNavigationDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F98B405B2736FE4D0A5B59C9 /* Pods-ARKitNavigationDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARKitNavigationDemoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ARKitNavigationDemoTests/Pods-ARKitNavigationDemoTests.release.xcconfig"; sourceTree = "<group>"; };
+		FCE8CE1E4967831072D65168 /* Pods_ARKitNavigationDemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARKitNavigationDemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +138,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C08EAB87926265BB2DBE66D1 /* Pods_ARKitNavigationDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,6 +146,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE3F26E47366B7045EDE3F19 /* Pods_ARKitNavigationDemoTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,12 +154,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13E985191F75E400234F54E9 /* Pods_ARKitNavigationDemoUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		003ED664ECA216738FF0BF18 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9B958384835A9EDD217B56BD /* Pods_ARKitNavigationDemo.framework */,
+				E3EC06084F55525DD2250241 /* Pods_ARKitNavigationDemoTests.framework */,
+				FCE8CE1E4967831072D65168 /* Pods_ARKitNavigationDemoUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		11C641251699956CD1484047 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3A5EF87A3C32FCC705382FB4 /* Pods-ARKitNavigationDemo.debug.xcconfig */,
+				B66D556DF96B0AF3B6B0F936 /* Pods-ARKitNavigationDemo.release.xcconfig */,
+				67259A541377AFD35662A0F3 /* Pods-ARKitNavigationDemoTests.debug.xcconfig */,
+				F98B405B2736FE4D0A5B59C9 /* Pods-ARKitNavigationDemoTests.release.xcconfig */,
+				69F4AFC274CCF005899D3CF5 /* Pods-ARKitNavigationDemoUITests.debug.xcconfig */,
+				68F16995846093397F3ECC1F /* Pods-ARKitNavigationDemoUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		A74AF0861F6CA2480000CD5F = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +191,8 @@
 				A74AF0A81F6CA2490000CD5F /* ARKitNavigationDemoTests */,
 				A74AF0B31F6CA2490000CD5F /* ARKitNavigationDemoUITests */,
 				A74AF0901F6CA2480000CD5F /* Products */,
+				11C641251699956CD1484047 /* Pods */,
+				003ED664ECA216738FF0BF18 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -328,10 +368,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A74AF0B91F6CA2490000CD5F /* Build configuration list for PBXNativeTarget "ARKitNavigationDemo" */;
 			buildPhases = (
+				C8C9F80FE0D7AEC2F0BE0FDC /* [CP] Check Pods Manifest.lock */,
 				A74AF08B1F6CA2480000CD5F /* Sources */,
 				A74AF08C1F6CA2480000CD5F /* Frameworks */,
 				A74AF08D1F6CA2480000CD5F /* Resources */,
 				A7746D371F6CD95000B0B0B9 /* ShellScript */,
+				FB8C9AA12A8FB08C3F017AAF /* [CP] Embed Pods Frameworks */,
+				35A57D5125337406A0EBBF1E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -346,9 +389,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A74AF0BC1F6CA2490000CD5F /* Build configuration list for PBXNativeTarget "ARKitNavigationDemoTests" */;
 			buildPhases = (
+				8E8F7A7C0D592F73B0C84A94 /* [CP] Check Pods Manifest.lock */,
 				A74AF0A11F6CA2490000CD5F /* Sources */,
 				A74AF0A21F6CA2490000CD5F /* Frameworks */,
 				A74AF0A31F6CA2490000CD5F /* Resources */,
+				F3030B30B123C55F3C71EE4A /* [CP] Embed Pods Frameworks */,
+				687068B0DD70A23BD6702F07 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -364,9 +410,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A74AF0BF1F6CA2490000CD5F /* Build configuration list for PBXNativeTarget "ARKitNavigationDemoUITests" */;
 			buildPhases = (
+				0F2E7DA79DEA60387932EFA8 /* [CP] Check Pods Manifest.lock */,
 				A74AF0AC1F6CA2490000CD5F /* Sources */,
 				A74AF0AD1F6CA2490000CD5F /* Frameworks */,
 				A74AF0AE1F6CA2490000CD5F /* Resources */,
+				3951ACEE7EF8D5C86C0BD7B9 /* [CP] Embed Pods Frameworks */,
+				AF8C4119B8873D702D1C8C6A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -454,6 +503,87 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0F2E7DA79DEA60387932EFA8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ARKitNavigationDemoUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		35A57D5125337406A0EBBF1E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ARKitNavigationDemo/Pods-ARKitNavigationDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3951ACEE7EF8D5C86C0BD7B9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ARKitNavigationDemoUITests/Pods-ARKitNavigationDemoUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		687068B0DD70A23BD6702F07 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ARKitNavigationDemoTests/Pods-ARKitNavigationDemoTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8E8F7A7C0D592F73B0C84A94 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ARKitNavigationDemoTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		A7746D371F6CD95000B0B0B9 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -466,6 +596,72 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "";
+		};
+		AF8C4119B8873D702D1C8C6A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ARKitNavigationDemoUITests/Pods-ARKitNavigationDemoUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C8C9F80FE0D7AEC2F0BE0FDC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ARKitNavigationDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F3030B30B123C55F3C71EE4A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ARKitNavigationDemoTests/Pods-ARKitNavigationDemoTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FB8C9AA12A8FB08C3F017AAF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ARKitNavigationDemo/Pods-ARKitNavigationDemo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ARKitNavigationDemo/Pods-ARKitNavigationDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -673,6 +869,7 @@
 		};
 		A74AF0BA1F6CA2490000CD5F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3A5EF87A3C32FCC705382FB4 /* Pods-ARKitNavigationDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -688,6 +885,7 @@
 		};
 		A74AF0BB1F6CA2490000CD5F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B66D556DF96B0AF3B6B0F936 /* Pods-ARKitNavigationDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -703,6 +901,7 @@
 		};
 		A74AF0BD1F6CA2490000CD5F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 67259A541377AFD35662A0F3 /* Pods-ARKitNavigationDemoTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -720,6 +919,7 @@
 		};
 		A74AF0BE1F6CA2490000CD5F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F98B405B2736FE4D0A5B59C9 /* Pods-ARKitNavigationDemoTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -737,6 +937,7 @@
 		};
 		A74AF0C01F6CA2490000CD5F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 69F4AFC274CCF005899D3CF5 /* Pods-ARKitNavigationDemoUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -753,6 +954,7 @@
 		};
 		A74AF0C11F6CA2490000CD5F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 68F16995846093397F3ECC1F /* Pods-ARKitNavigationDemoUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
