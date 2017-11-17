@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		13E985191F75E400234F54E9 /* Pods_ARKitNavigationDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCE8CE1E4967831072D65168 /* Pods_ARKitNavigationDemoUITests.framework */; };
+		354E360E1FBF83CB00C8F681 /* LineSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354E360D1FBF83CB00C8F681 /* LineSegment.swift */; };
 		902B9F3B1FBF45D100E5E4C1 /* SchipholWhenToBeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902B9F3A1FBF45D100E5E4C1 /* SchipholWhenToBeService.swift */; };
 		902B9F3D1FBF65FE00E5E4C1 /* routeSchiphol.json in Resources */ = {isa = PBXBuildFile; fileRef = 902B9F3C1FBF65FE00E5E4C1 /* routeSchiphol.json */; };
 		902B9F521FBF6F9900E5E4C1 /* Envelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902B9F471FBF6F9900E5E4C1 /* Envelope.swift */; };
@@ -90,6 +91,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		354E360D1FBF83CB00C8F681 /* LineSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineSegment.swift; sourceTree = "<group>"; };
 		3A5EF87A3C32FCC705382FB4 /* Pods-ARKitNavigationDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARKitNavigationDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ARKitNavigationDemo/Pods-ARKitNavigationDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		67259A541377AFD35662A0F3 /* Pods-ARKitNavigationDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARKitNavigationDemoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ARKitNavigationDemoTests/Pods-ARKitNavigationDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		68F16995846093397F3ECC1F /* Pods-ARKitNavigationDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARKitNavigationDemoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ARKitNavigationDemoUITests/Pods-ARKitNavigationDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -337,6 +339,7 @@
 				A74AF0D61F6CA3D50000CD5F /* POIAnnotation.swift */,
 				A79518C91F7A1EE60030E21A /* LocationTranslation.swift */,
 				A79518CB1F7A1F130030E21A /* LocationData.swift */,
+				354E360D1FBF83CB00C8F681 /* LineSegment.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -757,6 +760,7 @@
 				A79518D01F7A1F6E0030E21A /* LocationServiceDelegate.swift in Sources */,
 				A74AF0DB1F6CA3FA0000CD5F /* MatrixHelper.swift in Sources */,
 				A74AF0CF1F6CA3850000CD5F /* StoryboardIdentifiable.swift in Sources */,
+				354E360E1FBF83CB00C8F681 /* LineSegment.swift in Sources */,
 				A79518D21F7A1FB10030E21A /* StoryboardIdentifiableError.swift in Sources */,
 				902B9F531FBF6F9900E5E4C1 /* Features.swift in Sources */,
 				A74AF0C91F6CA34A0000CD5F /* Mapable.swift in Sources */,
