@@ -10,6 +10,19 @@
 		13E985191F75E400234F54E9 /* Pods_ARKitNavigationDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCE8CE1E4967831072D65168 /* Pods_ARKitNavigationDemoUITests.framework */; };
 		902B9F3B1FBF45D100E5E4C1 /* SchipholWhenToBeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902B9F3A1FBF45D100E5E4C1 /* SchipholWhenToBeService.swift */; };
 		902B9F3D1FBF65FE00E5E4C1 /* routeSchiphol.json in Resources */ = {isa = PBXBuildFile; fileRef = 902B9F3C1FBF65FE00E5E4C1 /* routeSchiphol.json */; };
+		902B9F521FBF6F9900E5E4C1 /* Envelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902B9F471FBF6F9900E5E4C1 /* Envelope.swift */; };
+		902B9F531FBF6F9900E5E4C1 /* Features.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902B9F481FBF6F9900E5E4C1 /* Features.swift */; };
+		902B9F541FBF6F9900E5E4C1 /* Directions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902B9F491FBF6F9900E5E4C1 /* Directions.swift */; };
+		902B9F551FBF6F9900E5E4C1 /* Attributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902B9F4A1FBF6F9900E5E4C1 /* Attributes.swift */; };
+		902B9F561FBF6F9900E5E4C1 /* FieldAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902B9F4B1FBF6F9900E5E4C1 /* FieldAliases.swift */; };
+		902B9F571FBF6F9900E5E4C1 /* Json4Swift_Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902B9F4C1FBF6F9900E5E4C1 /* Json4Swift_Base.swift */; };
+		902B9F581FBF6F9900E5E4C1 /* Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902B9F4D1FBF6F9900E5E4C1 /* Messages.swift */; };
+		902B9F591FBF6F9900E5E4C1 /* SpatialReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902B9F4E1FBF6F9900E5E4C1 /* SpatialReference.swift */; };
+		902B9F5A1FBF6F9900E5E4C1 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902B9F4F1FBF6F9900E5E4C1 /* Routes.swift */; };
+		902B9F5B1FBF6F9900E5E4C1 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902B9F501FBF6F9900E5E4C1 /* Geometry.swift */; };
+		902B9F5C1FBF6F9900E5E4C1 /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902B9F511FBF6F9900E5E4C1 /* Summary.swift */; };
+		902B9F5E1FBF7A9900E5E4C1 /* routeSchipolString.txt in Resources */ = {isa = PBXBuildFile; fileRef = 902B9F5D1FBF7A9900E5E4C1 /* routeSchipolString.txt */; };
+		902B9F601FBF7D1B00E5E4C1 /* WayFindingSchipholService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902B9F5F1FBF7D1B00E5E4C1 /* WayFindingSchipholService.swift */; };
 		A74AF0931F6CA2480000CD5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74AF0921F6CA2480000CD5F /* AppDelegate.swift */; };
 		A74AF0951F6CA2490000CD5F /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = A74AF0941F6CA2490000CD5F /* art.scnassets */; };
 		A74AF0971F6CA2490000CD5F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74AF0961F6CA2490000CD5F /* ViewController.swift */; };
@@ -80,7 +93,20 @@
 		68F16995846093397F3ECC1F /* Pods-ARKitNavigationDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARKitNavigationDemoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ARKitNavigationDemoUITests/Pods-ARKitNavigationDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
 		69F4AFC274CCF005899D3CF5 /* Pods-ARKitNavigationDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARKitNavigationDemoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ARKitNavigationDemoUITests/Pods-ARKitNavigationDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		902B9F3A1FBF45D100E5E4C1 /* SchipholWhenToBeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchipholWhenToBeService.swift; sourceTree = "<group>"; };
-		902B9F3C1FBF65FE00E5E4C1 /* routeSchiphol.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = routeSchiphol.json; sourceTree = SOURCE_ROOT; };
+		902B9F3C1FBF65FE00E5E4C1 /* routeSchiphol.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = routeSchiphol.json; path = ARKitNavigationDemo/Services/WayFinderDataObjects/routeSchiphol.json; sourceTree = SOURCE_ROOT; };
+		902B9F471FBF6F9900E5E4C1 /* Envelope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Envelope.swift; path = ARKitNavigationDemo/Services/SchipholWayFinderDataObjects/Envelope.swift; sourceTree = SOURCE_ROOT; };
+		902B9F481FBF6F9900E5E4C1 /* Features.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Features.swift; path = ARKitNavigationDemo/Services/SchipholWayFinderDataObjects/Features.swift; sourceTree = SOURCE_ROOT; };
+		902B9F491FBF6F9900E5E4C1 /* Directions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Directions.swift; path = ARKitNavigationDemo/Services/SchipholWayFinderDataObjects/Directions.swift; sourceTree = SOURCE_ROOT; };
+		902B9F4A1FBF6F9900E5E4C1 /* Attributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Attributes.swift; path = ARKitNavigationDemo/Services/SchipholWayFinderDataObjects/Attributes.swift; sourceTree = SOURCE_ROOT; };
+		902B9F4B1FBF6F9900E5E4C1 /* FieldAliases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FieldAliases.swift; path = ARKitNavigationDemo/Services/SchipholWayFinderDataObjects/FieldAliases.swift; sourceTree = SOURCE_ROOT; };
+		902B9F4C1FBF6F9900E5E4C1 /* Json4Swift_Base.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Json4Swift_Base.swift; path = ARKitNavigationDemo/Services/SchipholWayFinderDataObjects/Json4Swift_Base.swift; sourceTree = SOURCE_ROOT; };
+		902B9F4D1FBF6F9900E5E4C1 /* Messages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Messages.swift; path = ARKitNavigationDemo/Services/SchipholWayFinderDataObjects/Messages.swift; sourceTree = SOURCE_ROOT; };
+		902B9F4E1FBF6F9900E5E4C1 /* SpatialReference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpatialReference.swift; path = ARKitNavigationDemo/Services/SchipholWayFinderDataObjects/SpatialReference.swift; sourceTree = SOURCE_ROOT; };
+		902B9F4F1FBF6F9900E5E4C1 /* Routes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Routes.swift; path = ARKitNavigationDemo/Services/SchipholWayFinderDataObjects/Routes.swift; sourceTree = SOURCE_ROOT; };
+		902B9F501FBF6F9900E5E4C1 /* Geometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Geometry.swift; path = ARKitNavigationDemo/Services/SchipholWayFinderDataObjects/Geometry.swift; sourceTree = SOURCE_ROOT; };
+		902B9F511FBF6F9900E5E4C1 /* Summary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Summary.swift; path = ARKitNavigationDemo/Services/SchipholWayFinderDataObjects/Summary.swift; sourceTree = SOURCE_ROOT; };
+		902B9F5D1FBF7A9900E5E4C1 /* routeSchipolString.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = routeSchipolString.txt; sourceTree = "<group>"; };
+		902B9F5F1FBF7D1B00E5E4C1 /* WayFindingSchipholService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WayFindingSchipholService.swift; sourceTree = "<group>"; };
 		9B958384835A9EDD217B56BD /* Pods_ARKitNavigationDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARKitNavigationDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A74AF08F1F6CA2480000CD5F /* ARKitNavigationDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARKitNavigationDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A74AF0921F6CA2480000CD5F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -188,6 +214,26 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		902B9F461FBF6F8A00E5E4C1 /* WayFinderDataObjects */ = {
+			isa = PBXGroup;
+			children = (
+				902B9F3C1FBF65FE00E5E4C1 /* routeSchiphol.json */,
+				902B9F4A1FBF6F9900E5E4C1 /* Attributes.swift */,
+				902B9F491FBF6F9900E5E4C1 /* Directions.swift */,
+				902B9F471FBF6F9900E5E4C1 /* Envelope.swift */,
+				902B9F481FBF6F9900E5E4C1 /* Features.swift */,
+				902B9F4B1FBF6F9900E5E4C1 /* FieldAliases.swift */,
+				902B9F501FBF6F9900E5E4C1 /* Geometry.swift */,
+				902B9F4C1FBF6F9900E5E4C1 /* Json4Swift_Base.swift */,
+				902B9F4D1FBF6F9900E5E4C1 /* Messages.swift */,
+				902B9F4F1FBF6F9900E5E4C1 /* Routes.swift */,
+				902B9F4E1FBF6F9900E5E4C1 /* SpatialReference.swift */,
+				902B9F511FBF6F9900E5E4C1 /* Summary.swift */,
+				902B9F5D1FBF7A9900E5E4C1 /* routeSchipolString.txt */,
+			);
+			path = WayFinderDataObjects;
+			sourceTree = "<group>";
+		};
 		A74AF0861F6CA2480000CD5F = {
 			isa = PBXGroup;
 			children = (
@@ -214,7 +260,6 @@
 			isa = PBXGroup;
 			children = (
 				A74AF0A01F6CA2490000CD5F /* Info.plist */,
-				902B9F3C1FBF65FE00E5E4C1 /* routeSchiphol.json */,
 				A74AF0921F6CA2480000CD5F /* AppDelegate.swift */,
 				A74AF0F41F6CAA390000CD5F /* Assets */,
 				A74AF0ED1F6CA98F0000CD5F /* Services */,
@@ -295,12 +340,14 @@
 		A74AF0ED1F6CA98F0000CD5F /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				902B9F461FBF6F8A00E5E4C1 /* WayFinderDataObjects */,
 				A74AF0EB1F6CA9760000CD5F /* Helpers */,
 				A74AF0C41F6CA2A50000CD5F /* LocationService.swift */,
 				A79518CF1F7A1F6E0030E21A /* LocationServiceDelegate.swift */,
 				A74AF0C21F6CA2650000CD5F /* NavigationService.swift */,
 				A79518D51F7A24270030E21A /* ApplicationService.swift */,
 				902B9F3A1FBF45D100E5E4C1 /* SchipholWhenToBeService.swift */,
+				902B9F5F1FBF7D1B00E5E4C1 /* WayFindingSchipholService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -488,6 +535,7 @@
 				A74AF09F1F6CA2490000CD5F /* LaunchScreen.storyboard in Resources */,
 				A74AF0F01F6CAA020000CD5F /* Start.storyboard in Resources */,
 				902B9F3D1FBF65FE00E5E4C1 /* routeSchiphol.json in Resources */,
+				902B9F5E1FBF7A9900E5E4C1 /* routeSchipolString.txt in Resources */,
 				A74AF09C1F6CA2490000CD5F /* Assets.xcassets in Resources */,
 				A74AF09A1F6CA2490000CD5F /* Navigation.storyboard in Resources */,
 			);
@@ -686,6 +734,8 @@
 				A79518C01F7A1E280030E21A /* ControllerCoordinatorDelegate.swift in Sources */,
 				A74AF0F61F6CAAA20000CD5F /* MainCoordinator.swift in Sources */,
 				A74AF0C31F6CA2650000CD5F /* NavigationService.swift in Sources */,
+				902B9F601FBF7D1B00E5E4C1 /* WayFindingSchipholService.swift in Sources */,
+				902B9F541FBF6F9900E5E4C1 /* Directions.swift in Sources */,
 				A79518CC1F7A1F130030E21A /* LocationData.swift in Sources */,
 				A74AF0DD1F6CA40E0000CD5F /* CLLocation+Extension.swift in Sources */,
 				A74AF0D31F6CA3AF0000CD5F /* MessagePresenting.swift in Sources */,
@@ -701,19 +751,29 @@
 				A74AF0DB1F6CA3FA0000CD5F /* MatrixHelper.swift in Sources */,
 				A74AF0CF1F6CA3850000CD5F /* StoryboardIdentifiable.swift in Sources */,
 				A79518D21F7A1FB10030E21A /* StoryboardIdentifiableError.swift in Sources */,
+				902B9F531FBF6F9900E5E4C1 /* Features.swift in Sources */,
 				A74AF0C91F6CA34A0000CD5F /* Mapable.swift in Sources */,
 				A74AF0931F6CA2480000CD5F /* AppDelegate.swift in Sources */,
 				A74AF0D71F6CA3D50000CD5F /* POIAnnotation.swift in Sources */,
 				A74AF0DF1F6CA42E0000CD5F /* CLLocationCoordinate2D+Extension.swift in Sources */,
 				A74AF0CB1F6CA35D0000CD5F /* Coordinator.swift in Sources */,
+				902B9F5A1FBF6F9900E5E4C1 /* Routes.swift in Sources */,
 				A79518C21F7A1E4F0030E21A /* ControllerType.swift in Sources */,
 				A79518CA1F7A1EE60030E21A /* LocationTranslation.swift in Sources */,
+				902B9F591FBF6F9900E5E4C1 /* SpatialReference.swift in Sources */,
+				902B9F551FBF6F9900E5E4C1 /* Attributes.swift in Sources */,
+				902B9F5B1FBF6F9900E5E4C1 /* Geometry.swift in Sources */,
+				902B9F561FBF6F9900E5E4C1 /* FieldAliases.swift in Sources */,
 				A74AF0E71F6CA4B40000CD5F /* UIStoryboard+Extension.swift in Sources */,
+				902B9F581FBF6F9900E5E4C1 /* Messages.swift in Sources */,
+				902B9F571FBF6F9900E5E4C1 /* Json4Swift_Base.swift in Sources */,
 				A79518D61F7A24270030E21A /* ApplicationService.swift in Sources */,
+				902B9F521FBF6F9900E5E4C1 /* Envelope.swift in Sources */,
 				A79518C81F7A1E950030E21A /* CoordinatorDelegate.swift in Sources */,
 				A79518D41F7A1FF90030E21A /* Constants.swift in Sources */,
 				902B9F3B1FBF45D100E5E4C1 /* SchipholWhenToBeService.swift in Sources */,
 				A74AF0F81F6CAAB00000CD5F /* StartControllerCoordinator.swift in Sources */,
+				902B9F5C1FBF6F9900E5E4C1 /* Summary.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
