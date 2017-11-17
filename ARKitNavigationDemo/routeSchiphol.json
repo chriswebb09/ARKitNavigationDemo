@@ -1,0 +1,144 @@
+{
+	"messages": [{
+		"type": 50,
+		"description": "Location \"Location 1\" in \"Stops\" is on a soft-restricted network element."
+	}, {
+		"type": 50,
+		"description": "Location \"Location 2\" in \"Stops\" is on a soft-restricted network element."
+	}, {
+		"type": 50,
+		"description": "Network elements with avoid-restrictions are traversed in the output (restriction attribute names: \"Roadclass 2\" \"Roadclass 3\")."
+	}],
+	"checksum": "PwkAAAAGAAA.",
+	"routes": {
+		"hasM": true,
+		"fieldAliases": {
+			"ObjectID": "ObjectID",
+			"Name": "Name",
+			"FirstStopID": "FirstStopID",
+			"LastStopID": "LastStopID",
+			"StopCount": "StopCount",
+			"Total_PedestrianTime": "Total_PedestrianTime",
+			"Shape_Length": "Shape_Length"
+		},
+		"geometryType": "esriGeometryPolyline",
+		"spatialReference": {
+			"wkid": 4326,
+			"latestWkid": 4326
+		},
+		"features": [{
+			"attributes": {
+				"ObjectID": 1,
+				"Name": "Location 1 - Location 2",
+				"FirstStopID": 1,
+				"LastStopID": 2,
+				"StopCount": 2,
+				"Total_PedestrianTime": 2.2446090593559886,
+				"Shape_Length": 0.0016958535001286132
+			},
+			"geometry": {
+				"hasM": true,
+				"paths": [
+					[
+						[4.7623604770000725, 52.309696688000031, 0],
+						[4.7623490130000619, 52.309702210000069, 0.013258829355239869],
+						[4.7623386030000461, 52.309694097000033, 0.028571769356727599],
+						[4.7622142350000445, 52.309597162000046, 0.21151725935935975],
+						[4.7621481260000564, 52.309545635000063, 0.30876499936580659],
+						[4.7620932190000644, 52.309502839000061, 0.38953494935035704],
+						[4.7621424550000597, 52.309479120000049, 0.44647818934917449],
+						[4.7622582350000471, 52.309423344000038, 0.58038219935894009],
+						[4.7622988220000479, 52.309234340000046, 0.86319392936229711],
+						[4.7622148840000591, 52.309168917000079, 0.98666802935600284],
+						[4.762061362000054, 52.309057597000049, 1.202913469362259],
+						[4.7619566680000389, 52.309015645000045, 1.3166527893543243],
+						[4.7617546530000254, 52.308934695000062, 1.5361210793495179],
+						[4.761632291000069, 52.308886657000073, 1.8903650693655014],
+						[4.7614207890000557, 52.308811648000074, 2.2446090593576433]
+					]
+				]
+			}
+		}]
+	},
+	"directions": [{
+		"routeId": 1,
+		"routeName": "Location 1 - Location 2",
+		"hasM": true,
+		"summary": {
+			"totalLength": 141.78371174486949,
+			"totalTime": 2.2446090553421527,
+			"totalDriveTime": 2.2446090593559886,
+			"envelope": {
+				"xmin": 4.7594701512693867,
+				"ymin": 52.30804349956216,
+				"xmax": 4.7623918416973838,
+				"ymax": 52.309703099902677,
+				"spatialReference": {
+					"wkid": 4326,
+					"latestWkid": 4326
+				}
+			}
+		},
+		"features": [{
+			"attributes": {
+				"length": 0,
+				"time": 0,
+				"text": "Start at Location 1",
+				"ETA": -2209161600000,
+				"arriveTimeUTC": -2209161600000,
+				"maneuverType": "esriDMTDepart"
+			},
+			"compressedGeometry": "+0+1+2+174gnf+5qcusq+1vvf307+0+0|+5rg+0+0"
+		}, {
+			"attributes": {
+				"length": 0.99441215552682771,
+				"time": 0.013258829355988287,
+				"text": "Go northwest",
+				"ETA": -2209161600000,
+				"arriveTimeUTC": -2209161600000,
+				"maneuverType": "esriDMTStraight"
+			},
+			"compressedGeometry": "+0+1+2+174gnf+5qcusq+1vvf307-em+73|+5rg+0+2g"
+		}, {
+			"attributes": {
+				"length": 28.220709128449602,
+				"time": 0.37627611999999999,
+				"text": "Turn left",
+				"ETA": -2209161600000,
+				"arriveTimeUTC": -2209161600000,
+				"maneuverType": "esriDMTTurnLeft"
+			},
+			"compressedGeometry": "+0+1+2+174gnf+5qcue4+1vvf37a-dc-ad-4vg-3sb-2kp-222-26e-1mt|+5rg+2g+2r+12a+i8+f4"
+		}, {
+			"attributes": {
+				"length": 35.524423952117665,
+				"time": 0.47365897999999995,
+				"text": "Turn left",
+				"ETA": -2209161600000,
+				"arriveTimeUTC": -2209161600000,
+				"maneuverType": "esriDMTTurnLeft"
+			},
+			"compressedGeometry": "+0+1+2+174gnf+5qck61+1vver7j+1v5-ud+4kg-27h+1k2-7ie|+5rg+291+am+p3+1l1"
+		}, {
+			"attributes": {
+				"length": 77.04416650877539,
+				"time": 1.3814151300000006,
+				"text": "Turn right",
+				"ETA": -2209161600000,
+				"arriveTimeUTC": -2209161600000,
+				"maneuverType": "esriDMTTurnRight"
+			},
+			"compressedGeometry": "+0+1+2+174gnf+5qcsdo+1vvegf7-3bl-2jt-64t-4ep-469-1lq-833-37q-4su-1tk-8f9-306|+5rg+51r+n5+18h+lb+195+22d+22e"
+		}, {
+			"attributes": {
+				"length": 0,
+				"time": 0,
+				"text": "Finish at Location 2",
+				"ETA": -2209161600000,
+				"arriveTimeUTC": -2209161600000,
+				"maneuverType": "esriDMTStop"
+			},
+			"compressedGeometry": "+0+1+2+174gnf+5qbp7j+1vvdvh3+0+0|+5rg+d4s+0"
+		}]
+	}]
+}

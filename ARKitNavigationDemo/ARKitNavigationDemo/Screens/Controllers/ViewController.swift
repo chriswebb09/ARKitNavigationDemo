@@ -44,6 +44,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        SchipholWhenToBeService.checkWhentoBeAtSChiphol(flightNumber: "")
         mapView.delegate = self
         setupScene()
         setupLocationService()

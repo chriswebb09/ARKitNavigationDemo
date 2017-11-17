@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		13E985191F75E400234F54E9 /* Pods_ARKitNavigationDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCE8CE1E4967831072D65168 /* Pods_ARKitNavigationDemoUITests.framework */; };
+		902B9F3B1FBF45D100E5E4C1 /* SchipholWhenToBeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902B9F3A1FBF45D100E5E4C1 /* SchipholWhenToBeService.swift */; };
+		902B9F3D1FBF65FE00E5E4C1 /* routeSchiphol.json in Resources */ = {isa = PBXBuildFile; fileRef = 902B9F3C1FBF65FE00E5E4C1 /* routeSchiphol.json */; };
 		A74AF0931F6CA2480000CD5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74AF0921F6CA2480000CD5F /* AppDelegate.swift */; };
 		A74AF0951F6CA2490000CD5F /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = A74AF0941F6CA2490000CD5F /* art.scnassets */; };
 		A74AF0971F6CA2490000CD5F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74AF0961F6CA2490000CD5F /* ViewController.swift */; };
@@ -77,6 +79,8 @@
 		67259A541377AFD35662A0F3 /* Pods-ARKitNavigationDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARKitNavigationDemoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ARKitNavigationDemoTests/Pods-ARKitNavigationDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		68F16995846093397F3ECC1F /* Pods-ARKitNavigationDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARKitNavigationDemoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ARKitNavigationDemoUITests/Pods-ARKitNavigationDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
 		69F4AFC274CCF005899D3CF5 /* Pods-ARKitNavigationDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARKitNavigationDemoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ARKitNavigationDemoUITests/Pods-ARKitNavigationDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		902B9F3A1FBF45D100E5E4C1 /* SchipholWhenToBeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchipholWhenToBeService.swift; sourceTree = "<group>"; };
+		902B9F3C1FBF65FE00E5E4C1 /* routeSchiphol.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = routeSchiphol.json; sourceTree = SOURCE_ROOT; };
 		9B958384835A9EDD217B56BD /* Pods_ARKitNavigationDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARKitNavigationDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A74AF08F1F6CA2480000CD5F /* ARKitNavigationDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARKitNavigationDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A74AF0921F6CA2480000CD5F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -210,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				A74AF0A01F6CA2490000CD5F /* Info.plist */,
+				902B9F3C1FBF65FE00E5E4C1 /* routeSchiphol.json */,
 				A74AF0921F6CA2480000CD5F /* AppDelegate.swift */,
 				A74AF0F41F6CAA390000CD5F /* Assets */,
 				A74AF0ED1F6CA98F0000CD5F /* Services */,
@@ -295,6 +300,7 @@
 				A79518CF1F7A1F6E0030E21A /* LocationServiceDelegate.swift */,
 				A74AF0C21F6CA2650000CD5F /* NavigationService.swift */,
 				A79518D51F7A24270030E21A /* ApplicationService.swift */,
+				902B9F3A1FBF45D100E5E4C1 /* SchipholWhenToBeService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -481,6 +487,7 @@
 				A74AF0951F6CA2490000CD5F /* art.scnassets in Resources */,
 				A74AF09F1F6CA2490000CD5F /* LaunchScreen.storyboard in Resources */,
 				A74AF0F01F6CAA020000CD5F /* Start.storyboard in Resources */,
+				902B9F3D1FBF65FE00E5E4C1 /* routeSchiphol.json in Resources */,
 				A74AF09C1F6CA2490000CD5F /* Assets.xcassets in Resources */,
 				A74AF09A1F6CA2490000CD5F /* Navigation.storyboard in Resources */,
 			);
@@ -705,6 +712,7 @@
 				A79518D61F7A24270030E21A /* ApplicationService.swift in Sources */,
 				A79518C81F7A1E950030E21A /* CoordinatorDelegate.swift in Sources */,
 				A79518D41F7A1FF90030E21A /* Constants.swift in Sources */,
+				902B9F3B1FBF45D100E5E4C1 /* SchipholWhenToBeService.swift in Sources */,
 				A74AF0F81F6CAAB00000CD5F /* StartControllerCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -873,7 +881,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4SZP4Q326F;
+				DEVELOPMENT_TEAM = CWK29L7ZPT;
 				INFOPLIST_FILE = ARKitNavigationDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.froleeyo.ARKitNavigationDemo;
@@ -889,7 +897,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4SZP4Q326F;
+				DEVELOPMENT_TEAM = CWK29L7ZPT;
 				INFOPLIST_FILE = ARKitNavigationDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.froleeyo.ARKitNavigationDemo;
