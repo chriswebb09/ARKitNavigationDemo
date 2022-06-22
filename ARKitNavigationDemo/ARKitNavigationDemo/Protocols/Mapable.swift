@@ -8,7 +8,7 @@
 
 import MapKit
 
-protocol Mapable: class  {
+protocol Mapable: AnyObject  {
     var startingLocation: CLLocation! { get set }
     var mapView: MKMapView! { get set }
 }
@@ -21,8 +21,8 @@ extension Mapable {
                 self.mapView.setCenter(self.startingLocation.coordinate, animated: true)
                 let latDelta: CLLocationDegrees = 0.004
                 let lonDelta: CLLocationDegrees = 0.004
-                let span = MKCoordinateSpanMake(latDelta, lonDelta)
-                let region = MKCoordinateRegionMake(self.startingLocation.coordinate, span)
+                let span = MKCoordinateSpan(latitudeDelta: latDelta, longitudeDelta: lonDelta)
+                let region = MKCoordinateRegion(center: self.startingLocation.coordinate, span: span)
                 self.mapView.setRegion(region, animated: false)
             }
         }

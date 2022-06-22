@@ -10,5 +10,5 @@ import MapKit
 
 protocol ControllerCoordinatorDelegate: CoordinatorDelegate {
     func transitionCoordinator(type: CoordinatorType)
-    func setLocationData(for route: [POIAnnotation], with destination: CLLocation, and legs: [[CLLocationCoordinate2D]], and steps: [MKRouteStep])
+    func setLocationData(for route: [POIAnnotation], with destination: CLLocation, and legs: [[CLLocationCoordinate2D]], and steps: [MKRoute.Step])
 }

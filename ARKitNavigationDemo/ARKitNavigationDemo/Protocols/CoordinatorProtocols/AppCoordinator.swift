@@ -9,6 +9,6 @@
 import Foundation
 
 protocol AppCoordinator: Coordinator {
-    weak var delegate: ControllerCoordinatorDelegate? { get set }
+    var delegate: ControllerCoordinatorDelegate? { get set }
     var childCoordinators: [ControllerCoordinator] { get set }
 }

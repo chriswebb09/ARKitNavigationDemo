@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol Controller: class {
+protocol Controller: AnyObject {
     var type: ControllerType { get }
 }
