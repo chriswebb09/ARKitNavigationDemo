@@ -11,8 +11,8 @@ import CoreLocation
 
 struct NavigationService {
     
-    func getDirections(destinationLocation: CLLocationCoordinate2D, request: MKDirectionsRequest, completion: @escaping ([MKRouteStep]) -> Void) {
-        var steps: [MKRouteStep] = []
+    func getDirections(destinationLocation: CLLocationCoordinate2D, request: MKDirections.Request, completion: @escaping ([MKRoute.Step]) -> Void) {
+        var steps: [MKRoute.Step] = []
         
         let placeMark = MKPlacemark(coordinate: destinationLocation)
         

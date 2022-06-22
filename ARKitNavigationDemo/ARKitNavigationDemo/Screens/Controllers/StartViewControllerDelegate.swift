@@ -10,5 +10,5 @@ import MapKit
 
 protocol StartViewControllerDelegate: class {
     func startNavigation(tapped: Bool)
-    func startNavigation(with route: [POIAnnotation], for destination: CLLocation, and legs: [[CLLocationCoordinate2D]], and step: [MKRouteStep])
+    func startNavigation(with route: [POIAnnotation], for destination: CLLocation, and legs: [[CLLocationCoordinate2D]], and step: [MKRoute.Step])
 }

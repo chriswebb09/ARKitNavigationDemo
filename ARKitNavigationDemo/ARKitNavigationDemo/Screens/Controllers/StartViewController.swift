@@ -23,7 +23,7 @@ final class StartViewController: UIViewController, Controller {
     private var locations: [CLLocation] = []
     var startingLocation: CLLocation!
     var press: UILongPressGestureRecognizer!
-    private var steps: [MKRouteStep] = []
+    private var steps: [MKRoute.Step] = []
     var destinationLocation: CLLocationCoordinate2D! {
         didSet {
             setupNavigation()
@@ -39,6 +39,7 @@ final class StartViewController: UIViewController, Controller {
             press.minimumPressDuration = 0.35
             mapView.addGestureRecognizer(press)
             mapView.delegate = self
+            mapView.showsUserLocation = true
         } else {
             presentMessage(title: "Not Compatible", message: "ARKit is not compatible with this phone.")
             return
@@ -47,7 +48,7 @@ final class StartViewController: UIViewController, Controller {
     
     // Sets destination location to point on map
     @objc func handleMapTap(gesture: UIGestureRecognizer) {
-        if gesture.state != UIGestureRecognizerState.began {
+        if gesture.state != UIGestureRecognizer.State.began {
             return
         }
         // Get tap point on map
@@ -69,7 +70,7 @@ final class StartViewController: UIViewController, Controller {
         DispatchQueue.global(qos: .default).async {
             
             if self.destinationLocation != nil {
-                self.navigationService.getDirections(destinationLocation: self.destinationLocation, request: MKDirectionsRequest()) { steps in
+                self.navigationService.getDirections(destinationLocation: self.destinationLocation, request: MKDirections.Request()) { steps in
                     for step in steps {
                         self.annotations.append(POIAnnotation(coordinate: step.getLocation().coordinate, name: "N " + step.instructions))
                     }
@@ -151,7 +152,7 @@ final class StartViewController: UIViewController, Controller {
     }
     
     // Determines whether leg is first leg or not and routes logic accordingly
-    private func setTripLegFromStep(_ tripStep: MKRouteStep, and index: Int) {
+    private func setTripLegFromStep(_ tripStep: MKRoute.Step, and index: Int) {
         if index > 0 {
             getTripLeg(for: index, and: tripStep)
         } else {
@@ -160,7 +161,7 @@ final class StartViewController: UIViewController, Controller {
     }
     
     // Calculates intermediary coordinates for route step that is not first
-    private func getTripLeg(for index: Int, and tripStep: MKRouteStep) {
+    private func getTripLeg(for index: Int, and tripStep: MKRoute.Step) {
         let previousIndex = index - 1
         let previousStep = steps[previousIndex]
         let previousLocation = CLLocation(latitude: previousStep.polyline.coordinate.latitude, longitude: previousStep.polyline.coordinate.longitude)
@@ -170,7 +171,7 @@ final class StartViewController: UIViewController, Controller {
     }
     
     // Calculates intermediary coordinates for first route step
-    private func getInitialLeg(for tripStep: MKRouteStep) {
+    private func getInitialLeg(for tripStep: MKRoute.Step) {
         let nextLocation = CLLocation(latitude: tripStep.polyline.coordinate.latitude, longitude: tripStep.polyline.coordinate.longitude)
         let intermediaries = CLLocationCoordinate2D.getIntermediaryLocations(currentLocation: startingLocation, destinationLocation: nextLocation)
         currentTripLegs.append(intermediaries)
@@ -189,7 +190,7 @@ final class StartViewController: UIViewController, Controller {
                     self.annotationColor = .blue
                 }
                 self.mapView?.addAnnotation(annotation)
-                self.mapView.add(MKCircle(center: annotation.coordinate, radius: 0.2))
+                self.mapView.addOverlay(MKCircle(center: annotation.coordinate, radius: 0.2))
             }
         }
     }
@@ -215,6 +216,13 @@ extension StartViewController: MKMapViewDelegate {
         let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "annotationView") ?? MKAnnotationView()
         annotationView.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
         annotationView.canShowCallout = true
+        if annotation is MKUserLocation {
+            annotationView.image = UIImage(named: "hjhladar")
+            var frame = annotationView.frame
+            frame.size.height = 50
+            frame.size.width = 50
+            annotationView.frame = frame
+        }
         return annotationView
     }
     

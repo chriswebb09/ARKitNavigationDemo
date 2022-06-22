@@ -10,7 +10,7 @@ import MapKit
 
 // Get a CLLocation from a route step
 
-extension MKRouteStep {
+extension MKRoute.Step {
     func getLocation() -> CLLocation {
         return CLLocation(latitude: polyline.coordinate.latitude, longitude: polyline.coordinate.longitude)
     }

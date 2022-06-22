@@ -35,7 +35,7 @@ final class MainCoordinator: AppCoordinator {
 
 extension MainCoordinator: ControllerCoordinatorDelegate {
     
-    func setLocationData(for route: [POIAnnotation], with startingLocation: CLLocation, and legs: [[CLLocationCoordinate2D]], and steps: [MKRouteStep]) {
+    func setLocationData(for route: [POIAnnotation], with startingLocation: CLLocation, and legs: [[CLLocationCoordinate2D]], and steps: [MKRoute.Step]) {
         locationData = LocationData(destinationLocation: startingLocation, annotations: route, legs: legs, steps: steps)
     }
     

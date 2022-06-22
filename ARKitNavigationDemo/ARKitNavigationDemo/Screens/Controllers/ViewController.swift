@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     private var updateNodes: Bool = false
     private var anchors: [ARAnchor] = []
     private var nodes: [BaseNode] = []
-    private var steps: [MKRouteStep] = []
+    private var steps: [MKRoute.Step] = []
     private var locationService = LocationService()
     internal var annotations: [POIAnnotation] = []
     internal var startingLocation: CLLocation!
@@ -130,7 +130,7 @@ extension ViewController: MessagePresenting {
                     self.annotationColor = .blue
                 }
                 map.addAnnotation(annotation)
-                map.add(MKCircle(center: annotation.coordinate, radius: 0.2))
+                map.addOverlay(MKCircle(center: annotation.coordinate, radius: 0.2))
             }
         }
     }
@@ -160,7 +160,7 @@ extension ViewController: MessagePresenting {
     
     // For navigation route step add sphere node
     
-    private func addSphere(for step: MKRouteStep) {
+    private func addSphere(for step: MKRoute.Step) {
         let stepLocation = step.getLocation()
         let locationTransform = MatrixHelper.transformMatrix(for: matrix_identity_float4x4, originLocation: startingLocation, location: stepLocation)
         let stepAnchor = ARAnchor(transform: locationTransform)
@@ -259,7 +259,7 @@ extension ViewController: MKMapViewDelegate {
 
 extension ViewController:  Mapable {
     
-    private func addAnchors(steps: [MKRouteStep]) {
+    private func addAnchors(steps: [MKRoute.Step]) {
         guard startingLocation != nil && steps.count > 0 else { return }
         for step in steps { addSphere(for: step) }
         for location in locations { addSphere(for: location) }

@@ -13,5 +13,5 @@ typealias RootController = UIViewController & Controller
 protocol ControllerCoordinator: Coordinator {
     var window: UIWindow { get set }
     var rootController: RootController! { get }
-    weak var delegate: ControllerCoordinatorDelegate? { get set }
+    var delegate: ControllerCoordinatorDelegate? { get set }
 }

@@ -12,5 +12,5 @@ struct LocationData {
     var destinationLocation: CLLocation!
     var annotations: [POIAnnotation]
     var legs: [[CLLocationCoordinate2D]]
-    var steps: [MKRouteStep]
+    var steps: [MKRoute.Step]
 }
